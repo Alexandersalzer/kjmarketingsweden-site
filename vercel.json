@@ -1,0 +1,3 @@
+{
+  "installCommand": "printf '%s\\n' \"$NPM_RC\" > .npmrc && npm install"
+}
