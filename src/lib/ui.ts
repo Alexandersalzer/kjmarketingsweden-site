@@ -1,0 +1,81 @@
+'use client';
+
+/**
+ * Client-boundary re-export of every @blimpify-im/ui primitive we use.
+ * The UI bundle uses React hooks internally so it must cross the client boundary.
+ * Importing through this one file keeps all design-system imports honest and
+ * makes it impossible to "forget" the boundary.
+ *
+ * RULE: never import from @blimpify-im/ui directly — always go through here.
+ *       And NEVER add a hand-rolled UI component to this codebase. If something
+ *       is missing from the design system, add it there instead.
+ */
+
+// Typography
+export {
+  Heading,
+  Body,
+  Display,
+  Label,
+  Typography,
+} from '@blimpify-im/ui';
+
+// Layout primitives
+export {
+  VStack,
+  HStack,
+  Card,
+  Box,
+  Grid,
+  GridItem,
+  Spacer,
+  Divider,
+  Section,
+  Container,
+  MasonryGrid,
+} from '@blimpify-im/ui';
+
+// Actions
+export {
+  Button,
+  IconButton,
+  TextLink,
+} from '@blimpify-im/ui';
+
+// Forms
+export {
+  Input,
+  Textarea,
+  Picker,
+  SegmentedControl,
+} from '@blimpify-im/ui';
+
+// Media
+export {
+  Logo,
+  Image,
+  Avatar,
+  VideoShowcase,
+} from '@blimpify-im/ui';
+
+// Data display
+export {
+  Stars,
+  Tag,
+} from '@blimpify-im/ui';
+
+// Animations / motion
+export {
+  CountUp,
+  CarouselAnimation,
+  FadeIn,
+} from '@blimpify-im/ui';
+
+// Icons used by service cards
+export {
+  VideoCameraIcon,
+  UsersIcon,
+  ChartBarIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from '@blimpify-im/ui';

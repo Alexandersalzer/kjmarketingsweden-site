@@ -1,0 +1,22 @@
+/*
+ * The design system owns all tokens, layout, and typography.
+ *   - `@blimpify-im/ui/dist/index.css` ships the foundation CSS (resets,
+ *     token rules, component styles). Token VALUES are injected at runtime
+ *     by `designSnippet()` in src/app/layout.tsx.
+ *   - Fonts declared in public/design/design.json are loaded here so the
+ *     browser has them before first paint.
+ */
+@import '@blimpify-im/ui/dist/index.css';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+html.theme-pending {
+  opacity: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,21 @@
+{
+  "globalStyles": {
+    "themeMode": "system",
+    "radius": "full",
+    "formWidth": "md",
+    "themeTone": "mono",
+    "accentColor": "inverse",
+    "layoutMedia": "full",
+    "layoutContent": "xl",
+    "navbarSpacing": "xl",
+    "sectionSpacing": "xs",
+    "containerSpacing": "lg",
+    "typographyScale": "md",
+    "fontPrimary": "Outfit",
+    "fontSecondary": "Helvetica Neue",
+    "fontWeightHeadingNumeric": 600,
+    "fontWeightBodyNumeric": 500,
+    "fontWeightLabelNumeric": 600,
+    "sectionBodyAnimation": "hero" 
+  }
+}
