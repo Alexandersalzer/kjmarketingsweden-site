@@ -13,6 +13,9 @@ import { ContactForm } from '@/components/ContactForm';
 import { PortfolioGallery } from '@/components/PortfolioGallery';
 import { portfolioStats } from '@/data/assets';
 import { t, isLang, type Lang } from '@/i18n';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { seo } from '@/data/seo';
 
 export async function generateMetadata({
   params,
@@ -21,13 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
-  return {
-    title: t('Videoportfolio - 200+ Professionella UGC-videor', lang),
-    description: t(
-      'Utforska vårt portfolio med över 200 UGC-videor. TikTok-kampanjer, Instagram Reels, intervjuer och viralt innehåll från 50+ kreatörer.',
-      lang,
-    ),
-  };
+  return pageMetadata('portfolio', lang, '/portfolio');
 }
 
 function parseStat(value: string): { num: number; suffix: string; decimals: number } {
@@ -46,9 +43,11 @@ export default async function PortfolioPage({
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
   const tr = (s: string) => t(s, lang);
+  const structuredData = seo.portfolio[lang].structuredData;
 
   return (
     <>
+      {structuredData ? <JsonLd data={structuredData} /> : null}
       <Section spacing="2xl">
         <Container>
           <VStack spacing="2xl" align="stretch">

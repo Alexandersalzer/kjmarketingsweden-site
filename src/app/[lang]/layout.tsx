@@ -7,7 +7,8 @@ import { CookieConsent, ConsentProvider } from '@/lib/ui';
 import { loadDesign } from '@/lib/design';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { LANGS, isLang, t, type Lang } from '@/i18n';
+import { LANGS, isLang, type Lang } from '@/i18n';
+import { SITE_URL, SITE_NAME, siteIcons, siteManifest } from '@/lib/seo';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -18,27 +19,15 @@ export function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
-  const { lang: raw } = await params;
-  const lang: Lang = isLang(raw) ? raw : 'sv';
-  return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kjmarketingsweden.com',
-    ),
-    title: {
-      default: 'KJ Marketing Sweden',
-      template: '%s | KJ Marketing Sweden',
-    },
-    description: t(
-      'UGC-byrå för video, sociala medier och annonsering. 50+ handplockade kreatörer och bevisad ROI.',
-      lang,
-    ),
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: '%s | KJ MARKETING SWEDEN',
+  },
+  icons: siteIcons,
+  manifest: siteManifest,
+};
 
 const attr = (v: unknown): string | undefined =>
   v === undefined || v === null ? undefined : String(v);
@@ -75,6 +64,15 @@ export default async function RootLayout({
       data-typography-scale={attr(tokens.typographyScale)}
     >
       <head>
+        {/* Load the brand font (Outfit) via a real stylesheet link — reliable
+            regardless of the @import inside the injected design CSS. The design
+            tokens set font-heading-family to Outfit; this guarantees it loads. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        />
         <style id="design-css" dangerouslySetInnerHTML={{ __html: snippet.css }} />
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"

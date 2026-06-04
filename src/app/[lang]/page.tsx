@@ -33,7 +33,21 @@ import {
   testimonials,
   TRUSTPILOT_BUSINESS_UNIT_ID,
 } from '@/data/assets';
+import type { Metadata } from 'next';
 import { t, localePath, isLang, type Lang } from '@/i18n';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { seo } from '@/data/seo';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang: raw } = await params;
+  const lang: Lang = isLang(raw) ? raw : 'sv';
+  return pageMetadata('home', lang, '/');
+}
 
 export default async function HomePage({
   params,
@@ -43,9 +57,11 @@ export default async function HomePage({
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
   const tr = (s: string) => t(s, lang);
+  const structuredData = seo.home[lang].structuredData;
 
   return (
     <>
+      {structuredData ? <JsonLd data={structuredData} /> : null}
       <Hero lang={lang} tr={tr} />
       <Portfolio lang={lang} tr={tr} />
       <Services lang={lang} tr={tr} />
@@ -124,7 +140,7 @@ function Portfolio({ lang, tr }: S) {
               duration={2500}
               enableScrollTrigger
               triggerOffset={100}
-              variant="display-md"
+              variant="display-lg"
               weight="bold"
               align="center"
             />
@@ -314,7 +330,7 @@ function Testimonials({ lang, tr }: S) {
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <Card variant="outlined" padding="md" radius="md">
+                <Card variant="outlined" padding="md" radius="md" className="card--clickable">
                   <VStack spacing="md" align="start">
                     <HStack spacing="md" align="center">
                       <Avatar name={review.author} src={review.avatarSrc} size="md" shape="full" />

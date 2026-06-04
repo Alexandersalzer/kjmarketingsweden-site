@@ -20,6 +20,7 @@ import { ContactForm } from '@/components/ContactForm';
 import { ServiceProcess } from '@/components/ServiceProcess';
 import { serviceHighlights, tjansterProcesses } from '@/data/assets';
 import { t, localePath, isLang, type Lang } from '@/i18n';
+import { pageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -28,13 +29,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
-  return {
-    title: t('Våra Tjänster', lang),
-    description: t(
-      'UGC Videos, Social Media Management och Paid Advertising. Skräddarsydda upplägg från strategi till skalning.',
-      lang,
-    ),
-  };
+  return pageMetadata('tjanster', lang, '/tjanster');
 }
 
 const HIGHLIGHT_ICONS = [VideoCameraIcon, UsersIcon, ChartBarIcon];
@@ -93,7 +88,7 @@ export default async function TjansterPage({
         </Container>
       </Section>
 
-      <Section spacing="2xl">
+      <Section spacing="2xl" background='raised'>
         <Container>
           <VStack spacing="lg" align="center">
             <SectionHeader

@@ -16,6 +16,9 @@ import { SectionHeader } from '@/components/SectionHeader';
 import { ContactForm } from '@/components/ContactForm';
 import { resultsItems, resultsStats } from '@/data/assets';
 import { t, isLang, type Lang } from '@/i18n';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { seo } from '@/data/seo';
 
 export async function generateMetadata({
   params,
@@ -24,13 +27,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
-  return {
-    title: t('Våra Resultat', lang),
-    description: t(
-      'Se konkreta resultat från våra UGC-kampanjer. 100M+ visningar, 200+ kampanjer, upp till 35X ROAS.',
-      lang,
-    ),
-  };
+  return pageMetadata('resultat', lang, '/resultat');
 }
 
 function parseStat(value: string): { num: number; suffix: string; decimals: number } {
@@ -49,9 +46,11 @@ export default async function ResultatPage({
   const { lang: raw } = await params;
   const lang: Lang = isLang(raw) ? raw : 'sv';
   const tr = (s: string) => t(s, lang);
+  const structuredData = seo.resultat[lang].structuredData;
 
   return (
     <>
+      {structuredData ? <JsonLd data={structuredData} /> : null}
       <Section spacing="2xl">
         <Container>
           <VStack spacing="2xl" align="stretch">

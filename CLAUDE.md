@@ -30,6 +30,14 @@
 - Typography: Heading, Body, Display
 - Never reinvent a component that exists in @blimpify-im/ui
 
+## SEO
+- Per-page SEO (title, description, keywords, OG, Twitter, structured data) lives
+  in `src/data/seo.ts` (sv + en), sourced from the production content `seo` blocks.
+- Pages set metadata via `pageMetadata(route, lang, path)` from `src/lib/seo.ts`
+  (handles canonical + sv/en hreflang). Favicons + manifest are site-wide in the
+  root layout (`siteIcons`/`siteManifest`, hosted on the CDN). JSON-LD via `<JsonLd>`.
+- Mirror the production site's SEO exactly; the live site wins over stale JSON.
+
 ## API
 - Contact form posts to /api/send-email
 - Never use /api/contact
