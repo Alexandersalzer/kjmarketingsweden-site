@@ -4,18 +4,16 @@ import { useMemo, useState } from 'react';
 import {
   VStack,
   Grid,
-  GridItem,
-  Card,
-  Body,
   Heading,
+  Body,
   VideoShowcase,
   SegmentedControl,
-  Tag,
-  HStack,
 } from '@/lib/ui';
 import { PORTFOLIO_FILTERS, portfolioItems } from '@/data/assets';
+import { t, type Lang } from '@/i18n';
 
-export function PortfolioGallery() {
+export function PortfolioGallery({ lang }: { lang: Lang }) {
+  // Filter values stay Swedish (they match item.categories); only labels translate.
   const [filter, setFilter] = useState<string>(PORTFOLIO_FILTERS[0]);
 
   const visible = useMemo(() => {
@@ -28,34 +26,31 @@ export function PortfolioGallery() {
       <SegmentedControl
         value={filter}
         onChange={setFilter}
-        options={PORTFOLIO_FILTERS.map((c) => ({ value: c, label: c }))}
+        options={PORTFOLIO_FILTERS.map((c) => ({ value: c, label: t(c, lang) }))}
         size="md"
       />
 
-      <Grid columns={{ base: 1, sm: 2, lg: 3 }} gap="lg">
+      <Grid columns={{ base: 1, md: 2, lg: 3 }} gap="lg" alignItems="start">
         {visible.map((item) => (
-          <GridItem key={item.id}>
-            <Card padding="none" radius="md" variant="outlined">
-              <VStack spacing="sm" align="stretch">
-                <VideoShowcase
-                  src={item.videoSrc}
-                  poster={item.poster}
-                  aspectRatio="9-16"
-                  radius="md"
-                />
-                <VStack spacing="xs" align="start" style={{ padding: '0 0.75rem 0.75rem' }}>
-                  <HStack spacing="xs" align="center">
-                    <Tag size="small" variant="accent">{item.category}</Tag>
-                    {item.flag ? (
-                      <Body size="sm" color="tertiary">{item.flag}</Body>
-                    ) : null}
-                  </HStack>
-                  <Heading level={5} weight="bold">{item.title}</Heading>
-                  <Body size="sm" color="secondary">{item.description}</Body>
-                </VStack>
-              </VStack>
-            </Card>
-          </GridItem>
+          <VStack key={item.id} spacing="sm" align="start">
+            <VideoShowcase
+              src={item.videoSrc}
+              poster={item.poster}
+              aspectRatio="9-16"
+              objectFit="cover"
+              radius="md"
+              variant="elevated"
+              size="full"
+              showPlayButton
+              controls
+              muted
+              loop={false}
+              flagCountry={item.flag}
+            />
+            <Body size="sm" weight="medium" color="secondary">{t(item.category, lang)}</Body>
+            <Heading level={4} weight="bold">{t(item.title, lang)}</Heading>
+            <Body size="sm">{t(item.description, lang)}</Body>
+          </VStack>
         ))}
       </Grid>
     </VStack>

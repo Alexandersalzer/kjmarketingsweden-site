@@ -33,21 +33,32 @@ import {
   testimonials,
   TRUSTPILOT_BUSINESS_UNIT_ID,
 } from '@/data/assets';
+import { t, localePath, isLang, type Lang } from '@/i18n';
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang: raw } = await params;
+  const lang: Lang = isLang(raw) ? raw : 'sv';
+  const tr = (s: string) => t(s, lang);
+
   return (
     <>
-      <Hero />
-      <Portfolio />
-      <Services />
-      <Results />
-      <Testimonials />
-      <Contact />
+      <Hero lang={lang} tr={tr} />
+      <Portfolio lang={lang} tr={tr} />
+      <Services lang={lang} tr={tr} />
+      <Results lang={lang} tr={tr} />
+      <Testimonials lang={lang} tr={tr} />
+      <Contact lang={lang} tr={tr} />
     </>
   );
 }
 
-function Hero() {
+type S = { lang: Lang; tr: (s: string) => string };
+
+function Hero({ lang, tr }: S) {
   return (
     <Section spacing="2xl">
       <Container>
@@ -55,15 +66,15 @@ function Hero() {
           <VStack spacing="lg" align="center">
             <SectionHeader
               isHero
-              heading="Performance byrå för tillväxt och försäljning"
-              body="Vi driver mätbar tillväxt genom Meta Ads och paid social – med ett team av 50+ handplockade kreatörer som producerar annonsmaterialet som faktiskt konverterar."
+              heading={tr('Performance byrå för tillväxt och försäljning')}
+              body={tr('Vi driver mätbar tillväxt genom Meta Ads och paid social – med ett team av 50+ handplockade kreatörer som producerar annonsmaterialet som faktiskt konverterar.')}
             />
-            <BookCalendlyButton label="Boka ett möte" size="lg" variant="accent" />
+            <BookCalendlyButton label={tr('Boka ett möte')} size="lg" variant="accent" />
           </VStack>
 
           <VStack spacing="sm" align="center">
             <Body size="sm" color="tertiary" align="center">
-              Företag vi samarbetat med
+              {tr('Företag vi samarbetat med')}
             </Body>
             <Box width="full">
               <CarouselAnimation
@@ -88,21 +99,19 @@ function Hero() {
             </Box>
           </VStack>
 
-          <Container width="form" noPadding>
-            <VideoShowcase
-              src={heroVideo.src}
-              poster={heroVideo.poster}
-              aspectRatio="2-3"
-              radius="md"
-            />
-          </Container>
+          <VideoShowcase
+            src={heroVideo.src}
+            poster={heroVideo.poster}
+            aspectRatio="16-9"
+            radius="md"
+          />
         </VStack>
       </Container>
     </Section>
   );
 }
 
-function Portfolio() {
+function Portfolio({ lang, tr }: S) {
   return (
     <Section id="portfolio" spacing="2xl">
       <Container>
@@ -112,7 +121,7 @@ function Portfolio() {
               end={100000000}
               suffix="+"
               separator=" "
-              duration={2.5}
+              duration={2500}
               enableScrollTrigger
               triggerOffset={100}
               variant="display-md"
@@ -120,7 +129,7 @@ function Portfolio() {
               align="center"
             />
             <Body size="lg" color="secondary" align="center">
-              Organiska visningar 2025 – genererade av 50+ handplockade UGC-kreatörer i hela Europa
+              {tr('Organiska visningar 2025 – genererade av 50+ handplockade UGC-kreatörer i hela Europa')}
             </Body>
           </VStack>
 
@@ -145,14 +154,14 @@ function Portfolio() {
               );
               return {
                 id: `portfolio-${i}`,
-                content: item.href ? <Link href={item.href}>{img}</Link> : img,
+                content: item.href ? <Link href={localePath(lang, item.href)}>{img}</Link> : img,
               };
             })}
           />
 
           <HStack justify="center">
-            <Link href="/portfolio" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="lg">Se Vår Kompletta Portfölj</Button>
+            <Link href={localePath(lang, '/portfolio')} style={{ textDecoration: 'none' }}>
+              <Button variant="primary" size="lg">{tr('Se Vår Kompletta Portfölj')}</Button>
             </Link>
           </HStack>
         </VStack>
@@ -161,20 +170,26 @@ function Portfolio() {
   );
 }
 
-function Services() {
+function Services({ lang, tr }: S) {
   return (
     <Section spacing="2xl">
       <Container>
         <VStack spacing="2xl" align="stretch">
           <SectionHeader
-            heading="Våra Tjänster"
-            body="Från autentiska UGC-videos till strategisk social media-hantering – vi hjälper e-handel och varumärken att växa med content som konverterar."
+            heading={tr('Våra Tjänster')}
+            body={tr('Från autentiska UGC-videos till strategisk social media-hantering – vi hjälper e-handel och varumärken att växa med content som konverterar.')}
           />
 
           <VStack spacing="2xl" align="stretch">
-            {servicesPreview.map((row, i) => {
-              const imageCell = (
-                <GridItem key="img" colSpan={1}>
+            {servicesPreview.map((row, i) => (
+              <HStack
+                key={i}
+                spacing="xl"
+                align="center"
+                mobileDirection="column"
+                direction={row.reverse ? 'row-reverse' : 'row'}
+              >
+                <Box grow width="full">
                   <Card padding="none" radius="md">
                     <Image
                       src={row.image}
@@ -185,32 +200,25 @@ function Services() {
                       objectPosition="top left"
                     />
                   </Card>
-                </GridItem>
-              );
-              const textCell = (
-                <GridItem key="text" colSpan={1}>
-                  <VStack spacing="sm" align="start" justify="center" style={{ height: '100%' }}>
+                </Box>
+                <Box grow width="full">
+                  <VStack spacing="sm" align="start">
                     <Body size="sm" color="secondary" weight="semibold">
-                      {row.subhead}
+                      {tr(row.subhead)}
                     </Body>
                     <Heading level={3} weight="bold">
-                      {row.heading}
+                      {tr(row.heading)}
                     </Heading>
-                    <Body>{row.description}</Body>
+                    <Body>{tr(row.description)}</Body>
                   </VStack>
-                </GridItem>
-              );
-              return (
-                <Grid key={i} columns={{ base: 1, md: 2, lg: 2 }} gap="xl">
-                  {row.reverse ? [textCell, imageCell] : [imageCell, textCell]}
-                </Grid>
-              );
-            })}
+                </Box>
+              </HStack>
+            ))}
           </VStack>
 
           <HStack justify="center">
-            <Link href="/tjanster" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="lg">Se Alla Tjänster</Button>
+            <Link href={localePath(lang, '/tjanster')} style={{ textDecoration: 'none' }}>
+              <Button variant="primary" size="lg">{tr('Se Alla Tjänster')}</Button>
             </Link>
           </HStack>
         </VStack>
@@ -219,61 +227,58 @@ function Services() {
   );
 }
 
-function Results() {
+function Results({ lang, tr }: S) {
   return (
     <Section spacing="2xl">
       <Container>
         <VStack spacing="2xl" align="stretch">
           <SectionHeader
-            heading="Bevisad tillväxt med Meta ads, creators och strategi"
-            body="Tack vare vårt starka kreativa team av ledande experter."
+            heading={tr('Bevisad tillväxt med Meta ads, creators och strategi')}
+            body={tr('Tack vare vårt starka kreativa team av ledande experter.')}
           />
 
-          <Box
-            display="grid"
+          <Grid
+            columns={{ base: 1, md: 3 }}
             gap="lg"
-            style={{
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gridAutoRows: '450px',
-            }}
+            alignItems="stretch"
+            style={{ gridTemplateRows: '450px 450px', gridAutoRows: '450px' }}
           >
             {resultsGridCells.map((cell, i) => (
-              <Box
+              <GridItem
                 key={i}
-                display="flex"
-                direction="column"
-                gap="sm"
-                style={{
-                  gridColumn: `span ${cell.colSpan}`,
-                  gridRow: `span ${cell.rowSpan}`,
-                  minHeight: 0,
-                }}
+                colSpan={cell.colSpan}
+                rowSpan={cell.rowSpan}
+                style={{ minHeight: 0 }}
               >
-                <Box
-                  grow
-                  style={{
-                    minHeight: 0,
-                    overflow: 'hidden',
-                    borderRadius: 'var(--radius-md, 12px)',
-                  }}
-                >
-                  <Image
-                    src={cell.image}
-                    alt={cell.imageAlt}
-                    width="100%"
-                    height="100%"
-                    objectFit="cover"
-                  />
-                </Box>
-                <Heading level={4} weight="bold">{cell.heading}</Heading>
-                <Body size="sm" color="secondary">{cell.body}</Body>
-              </Box>
+                <VStack spacing="sm" style={{ height: '100%' }}>
+                  <Box
+                    grow
+                    style={{
+                      minHeight: 0,
+                      overflow: 'hidden',
+                      borderRadius: 'var(--radius-md)',
+                    }}
+                  >
+                    <Image
+                      src={cell.image}
+                      alt={cell.imageAlt}
+                      width="full"
+                      height="full"
+                      radius="md"
+                      objectFit="cover"
+                      objectPosition={cell.objectPosition}
+                    />
+                  </Box>
+                  <Heading level={4} weight="bold">{tr(cell.heading)}</Heading>
+                  <Body size="sm" color="secondary">{tr(cell.body)}</Body>
+                </VStack>
+              </GridItem>
             ))}
-          </Box>
+          </Grid>
 
           <HStack justify="center">
-            <Link href="/resultat" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="lg">Visa Mer Resultat</Button>
+            <Link href={localePath(lang, '/resultat')} style={{ textDecoration: 'none' }}>
+              <Button variant="primary" size="lg">{tr('Visa Mer Resultat')}</Button>
             </Link>
           </HStack>
         </VStack>
@@ -282,22 +287,29 @@ function Results() {
   );
 }
 
-function Testimonials() {
+function Testimonials({ lang, tr }: S) {
   return (
     <Section spacing="2xl">
       <Container>
         <VStack spacing="2xl" align="stretch">
           <SectionHeader
-            tag="Recensioner"
-            heading="Betrodd av Ledande Varumärken"
-            body="Sedan 2018 har våra kreatörer byggt förtroende hos miljontals tittare. Vårt nätverk av handplockade UGC-kreatörer ger ditt varumärke autenticitet och trovärdighet som driver konverteringar."
+            tag={tr('Recensioner')}
+            heading={tr('Betrodd av Ledande Varumärken')}
+            body={tr('Sedan 2018 har våra kreatörer byggt förtroende hos miljontals tittare. Vårt nätverk av handplockade UGC-kreatörer ger ditt varumärke autenticitet och trovärdighet som driver konverteringar.')}
           />
 
-          <MasonryGrid columns={{ base: 1, md: 2, lg: 3 }} gap="lg">
-            {testimonials.map((t) => (
+          <MasonryGrid
+            columns={{ base: 1, md: 2, lg: 3 }}
+            gap="lg"
+            maxItemsMobile={6}
+            maxItemsTablet={9}
+            showMoreLabel={tr('Visa mer')}
+            showLessLabel={tr('Visa färre')}
+          >
+            {testimonials.map((review) => (
               <a
-                key={t.id}
-                href={t.link}
+                key={review.id}
+                href={review.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none', color: 'inherit' }}
@@ -305,37 +317,41 @@ function Testimonials() {
                 <Card variant="outlined" padding="md" radius="md">
                   <VStack spacing="md" align="start">
                     <HStack spacing="md" align="center">
-                      <Avatar name={t.author} src={t.avatarSrc} size="md" shape="full" />
+                      <Avatar name={review.author} src={review.avatarSrc} size="md" shape="full" />
                       <VStack spacing="xs" align="start">
-                        <Body size="md" weight="semibold">{t.author}</Body>
+                        <Body size="md" weight="semibold">{review.author}</Body>
                         <Body size="sm" color="tertiary">Trustpilot</Body>
-                        <Stars rating={t.rating} size="sm" />
+                        <Stars rating={review.rating} size="sm" />
                       </VStack>
                     </HStack>
-                    <Body size="md">{t.review}</Body>
+                    <Body size="md">{review.review}</Body>
                   </VStack>
                 </Card>
               </a>
             ))}
           </MasonryGrid>
 
-          <TrustpilotWidget businessUnitId={TRUSTPILOT_BUSINESS_UNIT_ID} locale="sv-SE" />
+          <TrustpilotWidget
+            businessUnitId={TRUSTPILOT_BUSINESS_UNIT_ID}
+            locale={lang === 'en' ? 'en-GB' : 'sv-SE'}
+          />
         </VStack>
       </Container>
     </Section>
   );
 }
 
-function Contact() {
+function Contact({ lang, tr }: S) {
   return (
     <Section id="contact" spacing="2xl">
       <Container width="form">
         <VStack spacing="2xl" align="stretch">
           <SectionHeader
-            heading="Redo att Skala Ditt Varumärke?"
-            body="Vi hjälper dig växa genom hela annonsresan - från strategi och brief, till att skapa innehållet, till att köra och optimera dina annonser. Du fokuserar på ditt varumärke. Vi fixar resten."
+            heading={tr('Redo att Skala Ditt Varumärke?')}
+            body={tr('Vi hjälper dig växa genom hela annonsresan - från strategi och brief, till att skapa innehållet, till att köra och optimera dina annonser. Du fokuserar på ditt varumärke. Vi fixar resten.')}
           />
           <ContactForm
+            lang={lang}
             pixelEvent={{
               event: 'Lead',
               parameters: {

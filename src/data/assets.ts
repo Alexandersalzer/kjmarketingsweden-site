@@ -37,7 +37,7 @@ export type PortfolioCarouselItem = { src: string; alt: string; href?: string };
 export const portfolioCarouselItems: PortfolioCarouselItem[] = [
   { src: `${CDN}/images/newtyskpc.png`,           alt: 'Tysk Creator Kampanj' },
   { src: `${CDN}/images/newjuletrojor.png`,       alt: 'Juletröjor Kampanj' },
-  { src: `${CDN}/images/newbytadäck.png`,         alt: 'Bytadäck',          href: '/portfolio' },
+  { src: `${CDN}/images/newbytada%CC%88ck.png`,    alt: 'Bytadäck',          href: '/portfolio' },
   { src: `${CDN}/images/newkjdinner.png`,         alt: 'KJ Dinner',         href: '/portfolio' },
   { src: `${CDN}/images/newkjbadtunna.png`,       alt: 'KJ Badtunna',       href: '/portfolio' },
   { src: `${CDN}/images/newamericancreator.png`,  alt: 'American Creator',  href: '/portfolio' },
@@ -91,6 +91,7 @@ export type ResultsGridCell = {
   imageAlt: string;
   colSpan: number;
   rowSpan: number;
+  objectPosition?: string;
 };
 
 export const resultsGridCells: ResultsGridCell[] = [
@@ -101,14 +102,16 @@ export const resultsGridCells: ResultsGridCell[] = [
     imageAlt: 'Takeover resultat',
     colSpan: 2,
     rowSpan: 1,
+    objectPosition: 'center',
   },
   {
     heading: 'Social Tillväxt',
     body: '2.1M visningar på 28 dagar',
-    image: `${CDN}/images/månadsresultat.png`,
+    image: `${CDN}/images/ma%CC%8Anadsresultat.png`,
     imageAlt: 'UGC Reklam resultat',
     colSpan: 1,
     rowSpan: 2,
+    objectPosition: 'left top',
   },
   {
     heading: 'Lönsamma Meta Ads-kampanjer',
@@ -117,6 +120,7 @@ export const resultsGridCells: ResultsGridCell[] = [
     imageAlt: 'TikTok Growth resultat',
     colSpan: 2,
     rowSpan: 1,
+    objectPosition: 'top',
   },
 ];
 
@@ -191,46 +195,54 @@ export type PortfolioItem = {
 export const PORTFOLIO_FILTERS = ['Alla arbeten', 'UGC-videor', 'Internationellt', 'Intervjuer', 'Män', 'Kvinnor'] as const;
 
 export const portfolioItems: PortfolioItem[] = [
-  { id: 'item_X2yE5j', category: 'Kampanjer', title: 'Juletröjor E-handelskampanj', description: 'Säsongskampanj för jultröjor som driver e-handelskonverteringar under högtrafik i semestertider.', videoSrc: `${CDN}/videos/SvenskHusmanJultro%CC%88jor.mp4`, poster: `${CDN}/thumbnails/SvenskHusmanJultro%CC%88jor.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_S7tZ2e', category: 'UGC', title: 'Sara - Autentiskt UGC', description: 'Äkta och relaterbart innehåll som skapar stark koppling med målgruppen.', videoSrc: `${CDN}/videos/SARA.mp4`, poster: `${CDN}/thumbnails/SARA.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Kvinnor'] },
-  { id: 'item_W9xD2i', category: 'UGC', title: 'Tysk UGC - Prenew Datorkomponenter', description: 'Högkvalitativt UGC-innehåll skapat för tyska marknaden, som visar mångkulturell räckvidd och anpassningsförmåga.', videoSrc: `${CDN}/videos/PrenewTysk.mov`, poster: `${CDN}/thumbnails/PrenewTysk.jpg`, flag: '🇩🇪', categories: ['UGC-videor', 'Internationellt', 'Män'] },
-  { id: 'item_R4sY9d', category: 'UGC', title: 'Bytadäck Produktkampanj', description: 'Däckbyten och fordonsprodukter UGC som ökar kundengagemang och driver höga konverteringsrater inom bilbranschen.', videoSrc: `${CDN}/videos/Bythjul1_captions.mov`, poster: `${CDN}/thumbnails/Bythjul1_captions.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Kvinnor'] },
-  { id: 'item_A1bH4m', category: 'UGC', title: 'KJ Hotel Dinner Upplevelse', description: 'Premium hotell- och matupplevelse UGC som tilltalar resande och livsstilskonsumenter.', videoSrc: `${CDN}/videos/Hookbeardkit.mov`, poster: `${CDN}/thumbnails/Hookbeardkit.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_Y5zF8k', category: 'UGC', title: 'Amerikansk Creator Samarbete', description: 'Cross-border UGC-kampanj för amerikanska marknaden som visar global räckvidd och kulturell anpassning.', videoSrc: `${CDN}/videos/Storytelling.mp4`, poster: `${CDN}/thumbnails/Storytelling.jpg`, flag: '🇺🇸', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_B4cI7n', category: 'UGC', title: 'Dansk UGC - Autentisk Skincare-rutin', description: 'Nordiskt UGC-innehåll för danska marknaden som visar regional expertis och kulturell förståelse.', videoSrc: `${CDN}/videos/LymphoraUGCbyChriz.mp4`, poster: `${CDN}/thumbnails/LymphoraUGCbyChriz.jpg`, flag: '🇩🇰', categories: ['UGC-videor', 'Internationellt'] },
-  { id: 'item_C7dJ0o', category: 'UGC', title: 'KJ Shoes Produktvisning', description: 'Skomode och stil-UGC som driver engagemang inom mode- och skosektorn.', videoSrc: `${CDN}/videos/Oddes.mp4`, poster: `${CDN}/thumbnails/Oddes.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_D0eK3p', category: 'UGC', title: 'Gaming Dator UGC', description: 'Teknik- och spel-UGC som tilltalar gamers och teknikentusiaster med detaljerade produktvisningar.', videoSrc: `${CDN}/videos/Prenewsvensk.mp4`, poster: `${CDN}/thumbnails/Prenewsvensk.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Internationellt', 'Kvinnor'] },
-  { id: 'item_E3fL6q', category: 'UGC', title: 'Batterikampanj', description: 'Produktdemo för batterier och energilösningar som driver konsumentförtroende och köpbeslut.', videoSrc: `${CDN}/videos/Norillo.mp4`, poster: `${CDN}/thumbnails/Norillo.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Kvinnor'] },
-  { id: 'item_F6gM9r', category: 'Intervjuer', title: 'Intervju om godis', description: 'Inte bara underhållande utan lyfter också fram det bra, extremt effektivt för att fånga människors nyfikenhet och konvertera.', videoSrc: `${CDN}/videos/fazer.mp4`, poster: `${CDN}/thumbnails/fazer.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_Y7zF2b', category: 'Viralt', title: 'Svenska Ikoner-utmaning med Swae Lee', description: 'Rapper Swae Lee takes on the ultimate Swedish culture test! Can this global superstar name the three biggest Swedish icons?', videoSrc: `${CDN}/videos/swaelee.mp4`, poster: `${CDN}/thumbnails/swaelee.jpg`, flag: '🇸🇪', categories: ['Intervjuer', 'Män'] },
-  { id: 'item_V8wC4y', category: 'UGC', title: 'Uppmärksamhetsväckande UGC', description: 'Engagerande innehåll som maximerar räckvidd i sociala medier och varumärkessynlighet.', videoSrc: `${CDN}/videos/calm.mp4`, poster: `${CDN}/thumbnails/calm.jpg`, flag: '🇸🇪', categories: ['Internationellt', 'Intervjuer'] },
-  { id: 'item_T0uA5f', category: 'Viralt', title: 'Viral TikTok reklam', description: 'Företaget ville pusha ut denna i deras betalda marknadsföring. Men redan på TikTok gick den viral utan 1kr i extra kostnad.', videoSrc: `${CDN}/videos/viral.mp4`, poster: `${CDN}/thumbnails/viral.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Intervjuer', 'Män'] },
-  { id: 'item_W1xD7z', category: 'UGC', title: 'En Dag i Livet', description: 'Autentiskt bakom kulisserna-innehåll som skapar personlig koppling med publiken.', videoSrc: `${CDN}/videos/Dayinthelife.mp4`, poster: `${CDN}/thumbnails/Dayinthelife.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_X4yE9a', category: 'UGC', title: 'Husdjursvänligt Innehåll', description: 'Engagerande husdjursinnehåll som tilltalar djurälskare och konsumenter av husdjursprodukter.', videoSrc: `${CDN}/videos/dog.mp4`, poster: `${CDN}/thumbnails/dog.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_Z0aG5c', category: 'UGC', title: 'Trädgårdsproduktvisning', description: 'Visning av trädgårdsprodukter i en autentisk miljö som tilltalar hementusiaster.', videoSrc: `${CDN}/videos/gardenugc.mp4`, poster: `${CDN}/thumbnails/gardenugc.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_A3bH8d', category: 'UGC', title: 'Herboxa Produktdemo', description: 'Utbildande innehåll som lyfter fram fördelarna med hälso- och välmåendeprodukter.', videoSrc: `${CDN}/videos/herboxa.mp4`, poster: `${CDN}/thumbnails/herboxa.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_B6cI1n', category: 'Kampanjer', title: 'Instagram-kampanj', description: 'Optimerad Instagram-annons som driver engagemang och konverteringar på plattformen.', videoSrc: `${CDN}/videos/Instagramad.mp4`, poster: `${CDN}/thumbnails/Instagramad.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_C9dJ4o', category: 'TikTok', title: '200k visningar på 1 vecka', description: 'En TikTok som flög och blev extremt populär - tusentals gillningar o kommentarer.', videoSrc: `${CDN}/videos/One of my clients TikTok.mp4`, poster: `${CDN}/thumbnails/One of my clients TikTok.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_D2eK7p', category: 'UGC', title: 'Lugn Seriös UGC', description: 'Denna UGC-annons var mot nätmobbning och hjälpte människor att bekämpa det. Visar kraften i lugnt, seriöst innehåll för viktiga ämnen.', videoSrc: `${CDN}/videos/slottmanus.mp4`, poster: `${CDN}/thumbnails/slottmanus.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_E5fL0q', category: 'Intervjuer', title: 'Vox Pop-intervjuer', description: 'Intervjuer förändrar digital marknadsföring genom att öka social media-engagemang och annonskonvertering.', videoSrc: `${CDN}/videos/interviewVoxpop.mp4`, poster: `${CDN}/thumbnails/interviewVoxpop.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_F8gM3r', category: 'Kampanjer', title: 'Tidsbegränsat Erbjudande', description: 'Övertygande reklamvideo som driver handling med ett tydligt värdeerbjudande.', videoSrc: `${CDN}/videos/offer-swap-ad.mp4`, poster: `${CDN}/thumbnails/offer-swap-ad.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_G1hN6s', category: 'Kampanjer', title: 'Introduktion Till Mina Tjänster', description: 'Tidig varumärkesintroduktionsvideo som visar utvecklingen av min innehållsskapande stil.', videoSrc: `${CDN}/videos/oldintro.mp4`, poster: `${CDN}/thumbnails/oldintro.jpg`, flag: '🇸🇪', categories: ['Intervjuer', 'Män'] },
-  { id: 'item_H4iO9t', category: 'UGC', title: 'Olivoljeproduktvisning', description: 'Matfokuserat UGC-innehåll som framhäver produktkvalitet och kulinariska användningsområden.', videoSrc: `${CDN}/videos/oliveoilugc.mp4`, poster: `${CDN}/thumbnails/oliveoilugc.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_I7jP2u', category: 'TikTok', title: 'Swiffer Produktdemo', description: 'Demonstration av produktfördelar på ett relaterbart sätt som resonerar med målgruppen.', videoSrc: `${CDN}/videos/Swifferad.mp4`, poster: `${CDN}/thumbnails/Swifferad.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_J0kQ5v', category: 'Intervjuer', title: 'Fazer Produktintervju', description: 'Street-style intervju som visar produkten i verkliga situationer.', videoSrc: `${CDN}/videos/bilintervju.mp4`, poster: `${CDN}/thumbnails/bilintervju.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_K3lR8w', category: 'Intervjuer', title: 'Kepsar Intervju', description: 'Engagerande gatu-intervju om mode och stil.', videoSrc: `${CDN}/videos/kepsarintervju.mp4`, poster: `${CDN}/thumbnails/kepsarintervju.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_L6mS1x', category: 'UGC', title: 'Parfymvisning', description: 'Denna högpresterande UGC-kampanj för premiumdoftalternativ levererade exceptionell ROAS och engagemangsnivåer.', videoSrc: `${CDN}/videos/perfume.mp4`, poster: `${CDN}/thumbnails/perfume.jpg`, flag: '🇸🇪', categories: ['Intervjuer', 'Män'] },
-  { id: 'item_M9nT4y', category: 'UGC', title: 'Fastighetsmarknadsföring', description: 'Engagerande fastighetsvisning som lyfter fram viktiga funktioner och skapar känslomässig koppling med tittarna.', videoSrc: `${CDN}/videos/Realestate.mp4`, poster: `${CDN}/thumbnails/Realestate.jpg`, flag: '🇸🇪', categories: ['Intervjuer', 'Män'] },
-  { id: 'item_N2oU7z', category: 'Kampanjer', title: 'Berättelsedriven Kampanj', description: 'Övertygande berättelser som skapar en känslomässig koppling mellan varumärket och dess publik.', videoSrc: `${CDN}/videos/Norillo.mp4`, poster: `${CDN}/thumbnails/Norillo.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_O5pV0a', category: 'UGC', title: 'Unboxing Upplevelse', description: 'Autentisk unboxing som skapar spänning och visar produktens värde.', videoSrc: `${CDN}/videos/unboxing.mp4`, poster: `${CDN}/thumbnails/unboxing.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_P8qW3b', category: 'UGC', title: 'Stekpanna Produktvisning', description: 'Engagerande köksprodukt UGC som visar praktisk användning och produktfördelar för matlagningsentusiaster.', videoSrc: `${CDN}/videos/stekpanna.mov`, poster: `${CDN}/thumbnails/stekpanna.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
-  { id: 'item_Q1rX6c', category: 'UGC', title: 'Up & Down Produktdemo', description: 'Dynamisk produktvisning som visar funktionalitet och fördelar på ett engagerande sätt.', videoSrc: `${CDN}/videos/Up&Down.mov`, poster: `${CDN}/thumbnails/Up&Down.jpg`, flag: '🇸🇪', categories: ['UGC-videor', 'Män'] },
+  { id: 'item_X2yE5j', category: 'Kampanjer', title: 'Juletröjor E-handelskampanj', description: 'Säsongskampanj för jultröjor som driver e-handelskonverteringar under högtrafik i semestertider.', videoSrc: `${CDN}/videos/SvenskHusmanJultro%CC%88jor.mp4`, poster: `${CDN}/thumbnails/SvenskHusmanJultro%CC%88jor.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_S7tZ2e', category: 'UGC', title: 'Sara - Autentiskt UGC', description: 'Äkta och relaterbart innehåll som skapar stark koppling med målgruppen.', videoSrc: `${CDN}/videos/SARA.mp4`, poster: `${CDN}/thumbnails/SARA.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Kvinnor"] },
+  { id: 'item_W9xD2i', category: 'UGC', title: 'Tysk UGC - Prenew Datorkomponenter', description: 'Högkvalitativt UGC-innehåll skapat för tyska marknaden, som visar mångkulturell räckvidd och anpassningsförmåga.', videoSrc: `${CDN}/videos/PrenewTysk.mov`, poster: `${CDN}/thumbnails/PrenewTysk.jpg`, flag: '🇩🇪', categories: ["UGC-videor", "Internationellt", "Män"] },
+  { id: 'item_R4sY9d', category: 'UGC', title: 'Stekpanna Produktvisning', description: 'Engagerande köksprodukt UGC som visar praktisk användning och produktfördelar för matlagningsentusiaster.', videoSrc: `${CDN}/videos/stekpanna.mp4`, poster: `${CDN}/thumbnails/stekpanna.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Kvinnor"] },
+  { id: 'item_A1bH4m', category: 'UGC', title: 'KJ Hotel Dinner Upplevelse', description: 'Premium hotell- och matupplevelse UGC som tilltalar resande och livsstilskonsumenter.', videoSrc: `${CDN}/videos/slottmanus.mp4`, poster: `${CDN}/thumbnails/slottmanus.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_Y5zF8k', category: 'UGC', title: 'Bytadäck Produktkampanj', description: 'Däckbyten och fordonsprodukter UGC som ökar kundengagemang och driver höga konverteringsrater inom bilbranschen.', videoSrc: `${CDN}/videos/Bythjul1_captions.mov`, poster: `${CDN}/thumbnails/Bythjul1_captions.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_B4cI7n', category: 'UGC', title: 'Amerikansk Creator Samarbete', description: 'Cross-border UGC-kampanj för amerikanska marknaden som visar global räckvidd och kulturell anpassning.', videoSrc: `${CDN}/videos/Hookbeardkit.mov`, poster: `${CDN}/thumbnails/Hookbeardkit.jpg`, flag: '🇺🇸', categories: ["UGC-videor", "Internationellt"] },
+  { id: 'item_C7dJ0o', category: 'UGC', title: 'KJ Shoes Produktvisning', description: 'Skomode och stil-UGC som driver engagemang inom mode- och skosektorn.', videoSrc: `${CDN}/videos/Norillo.mp4`, poster: `${CDN}/thumbnails/Norillo.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_D0eK3p', category: 'UGC', title: 'Dansk UGC - Autentisk Skincare-rutin', description: 'Nordiskt UGC-innehåll för danska marknaden som visar regional expertis och kulturell förståelse.', videoSrc: `${CDN}/videos/LymphoraUGCbyChriz.mp4`, poster: `${CDN}/thumbnails/LymphoraUGCbyChriz.jpg`, flag: '🇩🇰', categories: ["UGC-videor", "Internationellt", "Kvinnor"] },
+  { id: 'item_E3fL6q', category: 'UGC', title: 'Gaming Dator UGC', description: 'Teknik- och spel-UGC som tilltalar gamers och teknikentusiaster med detaljerade produktvisningar.', videoSrc: `${CDN}/videos/Prenewsvensk.mp4`, poster: `${CDN}/thumbnails/Prenewsvensk.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Kvinnor"] },
+  { id: 'item_F6gM9r', category: 'UGC', title: 'Batterikampanj', description: 'Produktdemo för batterier och energilösningar som driver konsumentförtroende och köpbeslut.', videoSrc: `${CDN}/videos/Oddes.mp4`, poster: `${CDN}/thumbnails/Oddes.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_Y7zF2b', category: 'Intervjuer', title: 'Intervju om godis', description: 'Inte bara underhållande utan lyfter också fram det bra, extremt effektivt för att fånga människors nyfikenhet och konvertera.', videoSrc: `${CDN}/videos/bilintervju.mp4`, poster: `${CDN}/thumbnails/bilintervju.jpg`, flag: '🇸🇪', categories: ["Intervjuer", "Män"] },
+  { id: 'item_V8wC4y', category: 'Viralt', title: 'Svenska Ikoner-utmaning med Swae Lee', description: 'Rapper Swae Lee takes on the ultimate Swedish culture test! Can this global superstar name the three biggest Swedish icons: ABBA, Zlatan, and Avicii? This viral interview moment showcases the perfect blend of entertainment and cultural connection.', videoSrc: `${CDN}/videos/swaelee.mp4`, poster: `${CDN}/thumbnails/swaelee.jpg`, flag: '🇺🇸', categories: ["Internationellt", "Intervjuer"] },
+  { id: 'item_T0uA5f', category: 'UGC', title: 'Up & Down Produktdemo', description: 'Dynamisk produktvisning som visar funktionalitet och fördelar på ett engagerande sätt.', videoSrc: `${CDN}/videos/Up&Down.mov`, poster: `${CDN}/thumbnails/Up&Down.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Intervjuer", "Män"] },
+  { id: 'item_W1xD7z', category: 'UGC', title: 'Uppmärksamhetsväckande UGC', description: 'Engagerande innehåll som maximerar räckvidd i sociala medier och varumärkessynlighet.', videoSrc: `${CDN}/videos/calm.mp4`, poster: `${CDN}/thumbnails/calm.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_X4yE9a', category: 'Viralt', title: 'Viral TikTok reklam', description: 'Företaget ville pusha ut denna i deras betalda marknadsföring. Men redan på TikTok gick den viral utan 1kr i extra kostnad, som drog in massor av kunder och följare.', videoSrc: `${CDN}/videos/viral.mp4`, poster: `${CDN}/thumbnails/viral.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_Z0aG5c', category: 'UGC', title: 'En Dag i Livet', description: 'Autentiskt bakom kulisserna-innehåll som skapar personlig koppling med publiken.', videoSrc: `${CDN}/videos/Dayinthelife.mp4`, poster: `${CDN}/thumbnails/Dayinthelife.jpg`, flag: '🇬🇧', categories: ["UGC-videor", "Män"] },
+  { id: 'item_A3bH8d', category: 'UGC', title: 'Husdjursvänligt Innehåll', description: 'Engagerande husdjursinnehåll som tilltalar djurälskare och konsumenter av husdjursprodukter.', videoSrc: `${CDN}/videos/dog.mp4`, poster: `${CDN}/thumbnails/dog.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_B6cI1n', category: 'UGC', title: 'Trädgårdsproduktvisning', description: 'Visning av trädgårdsprodukter i en autentisk miljö som tilltalar hementusiaster.', videoSrc: `${CDN}/videos/gardenugc.mp4`, poster: `${CDN}/thumbnails/gardenugc.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_C9dJ4o', category: 'UGC', title: 'Herboxa Produktdemo', description: 'Utbildande innehåll som lyfter fram fördelarna med hälso- och välmåendeprodukter.', videoSrc: `${CDN}/videos/herboxa.mp4`, poster: `${CDN}/thumbnails/herboxa.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_D2eK7p', category: 'Kampanjer', title: 'Instagram-kampanj', description: 'Optimerad Instagram-annons som driver engagemang och konverteringar på plattformen.', videoSrc: `${CDN}/videos/Instagramad.mp4`, poster: `${CDN}/thumbnails/Instagramad.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_E5fL0q', category: 'TikTok', title: '200k visningar på 1 vecka', description: 'En TikTok som flög och blev extremt populär - tusentals gillningar o kommentarer.', videoSrc: `${CDN}/videos/One of my clients TikTok.mp4`, poster: `${CDN}/thumbnails/One of my clients TikTok.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_F8gM3r', category: 'UGC', title: 'Lugn Seriös UGC', description: 'Denna UGC-annons var mot nätmobbning och hjälpte människor att bekämpa det. Visar kraften i lugnt, seriöst innehåll för att ta itu med viktiga sociala frågor.', videoSrc: `${CDN}/videos/calm.mp4`, poster: `${CDN}/thumbnails/calm.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_G1hN6s', category: 'Intervjuer', title: 'Vox Pop-intervjuer', description: 'Intervjuer förändrar digital marknadsföring genom att öka social media-engagemang och annonskonvertering. Autentiskt innehåll skapar starka kontakter.', videoSrc: `${CDN}/videos/interviewVoxpop.mp4`, poster: `${CDN}/thumbnails/interviewVoxpop.jpg`, flag: '🇸🇪', categories: ["Intervjuer", "Män"] },
+  { id: 'item_H4iO9t', category: 'Kampanjer', title: 'Tidsbegränsat Erbjudande', description: 'Övertygande reklamvideo som driver handling med ett tydligt värdeerbjudande.', videoSrc: `${CDN}/videos/offer-swap-ad.mp4`, poster: `${CDN}/thumbnails/offer-swap-ad.jpg`, flag: '🇬🇧', categories: ["UGC-videor", "Män"] },
+  { id: 'item_I7jP2u', category: 'Kampanjer', title: 'Introduktion Till Mina Tjänster', description: 'Tidig varumärkesintroduktionsvideo som visar utvecklingen av min innehållsskapande stil.', videoSrc: `${CDN}/videos/oldintro.mp4`, poster: `${CDN}/thumbnails/oldintro.jpg`, flag: '🇬🇧', categories: ["UGC-videor", "Män"] },
+  { id: 'item_J0kQ5v', category: 'UGC', title: 'Olivoljeproduktvisning', description: 'Matfokuserat UGC-innehåll som framhäver produktkvalitet och kulinariska användningsområden.', videoSrc: `${CDN}/videos/oliveoilugc.mp4`, poster: `${CDN}/thumbnails/oliveoilugc.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_K3lR8w', category: 'TikTok', title: 'Swiffer Produktdemo', description: 'Demonstration av produktfördelar på ett relaterbart sätt som resonerar med målgruppen.', videoSrc: `${CDN}/videos/Swifferad.mp4`, poster: `${CDN}/thumbnails/Swifferad.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_L6mS1x', category: 'Intervjuer', title: 'Fazer Produktintervju', description: 'Street-style intervju som visar produkten i verkliga situationer.', videoSrc: `${CDN}/videos/fazer.mp4`, poster: `${CDN}/thumbnails/fazer.jpg`, flag: '🇸🇪', categories: ["Intervjuer", "Män"] },
+  { id: 'item_M9nT4y', category: 'Intervjuer', title: 'Kepsar Intervju', description: 'Engagerande gatu-intervju om mode och stil.', videoSrc: `${CDN}/videos/kepsarintervju.mp4`, poster: `${CDN}/thumbnails/kepsarintervju.jpg`, flag: '🇸🇪', categories: ["Intervjuer", "Män"] },
+  { id: 'item_N2oU7z', category: 'UGC', title: 'Parfymvisning', description: 'Denna högpresterande UGC-kampanj för premiumdoftalternativ levererade exceptionell ROAS och engagemangsnivåer, vilket gjorde den till en av våra mest framgångsrika annonser hittills.', videoSrc: `${CDN}/videos/perfume.mp4`, poster: `${CDN}/thumbnails/perfume.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_O5pV0a', category: 'UGC', title: 'Fastighetsmarknadsföring', description: 'Engagerande fastighetsvisning som lyfter fram viktiga funktioner och skapar känslomässig koppling med tittarna.', videoSrc: `${CDN}/videos/Realestate.mp4`, poster: `${CDN}/thumbnails/Realestate.jpg`, flag: '🇬🇧', categories: ["UGC-videor", "Män"] },
+  { id: 'item_P8qW3b', category: 'Kampanjer', title: 'Berättelsedriven Kampanj', description: 'Övertygande berättelser som skapar en känslomässig koppling mellan varumärket och dess publik.', videoSrc: `${CDN}/videos/Storytelling.mp4`, poster: `${CDN}/thumbnails/Storytelling.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
+  { id: 'item_Q1rX6c', category: 'UGC', title: 'Unboxing Upplevelse', description: 'Autentisk unboxing som skapar spänning och visar produktens värde.', videoSrc: `${CDN}/videos/unboxing.mp4`, poster: `${CDN}/thumbnails/unboxing.jpg`, flag: '🇸🇪', categories: ["UGC-videor", "Män"] },
 ];
 
-export type ServiceProcess = { service: string; steps: { num: string; heading: string; body: string }[] };
+export type ServiceHighlight = { title: string; subtitle: string };
+
+export const serviceHighlights: ServiceHighlight[] = [
+  { title: 'UGC Videos', subtitle: '50+ handplockade kreatörer för dig' },
+  { title: 'Social Media Management', subtitle: 'Organisk tillväxt och engagemang' },
+  { title: 'Paid Advertising', subtitle: 'Meta & TikTok Ads som konverterar' },
+];
+
+export type ServiceProcess = { service: string; description: string; steps: { num: string; heading: string; body: string }[] };
 
 export const tjansterProcesses: ServiceProcess[] = [
-  { service: 'UGC Videos', steps: [
+  { service: 'UGC Videos', description: 'Planering, kreatörer, inspelning och redigering av användargenererat videoinnehåll', steps: [
     { num: '1', heading: 'Första Kontakt & Upplägg', body: 'Ni kontaktar oss och vi kommer överens om upplägg, strategi, vilka kreatörer som passar och era mål och visioner – antingen direkt via mail eller i möte.' },
     { num: '2', heading: 'Marknadsanalys & Brief', body: 'Vi bygger en omfattande brief och gör en marknadsanalys för att slå konkurrensen. Vi analyserar målgrupp, plattform och konkurrenters styrkor och svagheter.' },
     { num: '3', heading: 'Manus & Avtal', body: 'Vi skriver starka manus optimerade för maximal impact och konvertering. Samtidigt upprättas avtal med både er och kreatörerna för tydliga förväntningar.' },
@@ -238,7 +250,7 @@ export const tjansterProcesses: ServiceProcess[] = [
     { num: '5', heading: 'Redigering', body: 'Vi sköter all redigering och bearbetar materialet till polerade, plattformsanpassade videos med captions, musik och effekter.' },
     { num: '6', heading: 'Leverans & Godkännande', body: 'Vi skickar de färdiga videorna till er för godkännande. Redo för publicering, annonsering eller social media management.' },
   ] },
-  { service: 'Social Media Management', steps: [
+  { service: 'Social Media Management', description: 'Innehållsplanering, publicering och hantering av era sociala medier', steps: [
     { num: '1', heading: 'Första Kontakt & Upplägg', body: 'Ni kontaktar oss och vi kommer överens om upplägg, strategi, vilka kreatörer som passar och era mål och visioner. UGC-videos ingår i vårt upplägg.' },
     { num: '2', heading: 'Innehållsplanering & Strategi', body: 'Innehållsplanering baserad på målgrupp, plattform och affärsmål. Strategi för tonalitet, budskap och innehållstyper (informativt, varumärkesbyggande, konverterande).' },
     { num: '3', heading: 'UGC-Produktion', body: 'Vi bygger briefs, gör marknadsanalys, skriver starka manus och avtal. Kreatörerna spelar in och vi sköter all redigering för era kanaler.' },
@@ -246,7 +258,7 @@ export const tjansterProcesses: ServiceProcess[] = [
     { num: '5', heading: 'Community Management', body: 'Vi svarar på DMs och kommentarer i rimlig utsträckning. Grundläggande community management för att bygga relationer med er målgrupp.' },
     { num: '6', heading: 'Analys & Samordning', body: 'Löpande analys av vad som fungerar och justering av innehåll därefter. Samordning av organiskt innehåll med pågående annonsering.' },
   ] },
-  { service: 'Paid Advertising', steps: [
+  { service: 'Paid Advertising', description: 'Annonsering på Meta och TikTok med fokus på struktur och uppföljning', steps: [
     { num: '1', heading: 'Första Kontakt & Behovsidentifiering', body: 'Ni kontaktar oss och vi identifierar behov, ställer frågor för att djupdyka och lägger en struktur för kampanjerna.' },
     { num: '2', heading: 'Avtal & Överenskommelse', body: 'När vi kommit överens skrivs avtal och vi sätter förväntningar och mål för kampanjerna.' },
     { num: '3', heading: 'Kampanjupplägg & Pixel', body: 'Vår paid ads-expert sätts i möte med bolaget och sätter upp allt från kampanjer till pixel till optimering på Meta och TikTok.' },
@@ -254,6 +266,34 @@ export const tjansterProcesses: ServiceProcess[] = [
     { num: '5', heading: 'Manus & Produktion', body: 'Vi skriver manus optimerade för paid ads och producerar UGC-videos specifikt för att konvertera i era kampanjer.' },
     { num: '6', heading: 'Lansering & Optimering', body: 'Vi sätter igång adsen, övervakar prestanda och optimerar kontinuerligt för att maximera ROAS och skalning.' },
   ] },
+];
+
+export type ResultItem = { id: string; image: string; heading: string; subhead: string; body: string };
+
+export const resultsItems: ResultItem[] = [
+  { id: 'item_jucd8f', image: `${CDN}/images/kalas.jpeg`, heading: `Skalad försäljning med Meta Ads`, subhead: `946 800 kr i försäljning på 1,5 månad – 18x ROAS`, body: `Skalat från 10 800 kr till 42 130 kr i månatlig annonsbudget med bibehållen lönsamhet – 2 460 köp genererade nästan en miljon i värde.` },
+  { id: 'item_njcd83', image: `${CDN}/images/ma%CC%8Anadsresultat.png`, heading: `Social Tillväxt`, subhead: `2.1M visningar på 28 dagar`, body: `Snabb tillväxt genom strategiskt UGC som driver trafik, profilbesök och köpintention.` },
+  { id: 'item_lokiju', image: `${CDN}/images/26dashres.png`, heading: `Lönsamma Meta Ads-kampanjer`, subhead: `141 000 kr i värde på 10 000 kr spend – 14x ROAS`, body: `264 000 visningar och 150 000 personer i räckvidd som genererade 331 köp – mätbar tillväxt på Meta Ads.` },
+  { id: 'item_G0jI3l', image: `${CDN}/images/tiktokstats.jpeg`, heading: `Takeover`, subhead: `1M visningar på 4 veckor`, body: `Låt mig ta över er eller skapa en TikTok-kanal åt er. Ni lutar er tillbaka, och jag fixar kunderna.` },
+  { id: 'item_H3kJ6m', image: `${CDN}/images/12.3.jpg`, heading: `TikTok Growth`, subhead: `12.300 följare på 2 månader`, body: `Fick styra deras TikTok i 2 månader – appen blev en av de mest trendande på App Store.` },
+  { id: 'item_I6lK9n', image: `${CDN}/images/bild49.png`, heading: `Kostnaden per resultat`, subhead: `Kostnad minskade med 49%`, body: `Dina annonser ger bättre resultat efter mina videor. Kostnaderna minskade drastiskt.` },
+  { id: 'item_J9mL2o', image: `${CDN}/images/bokningar.png`, heading: `Bokningar`, subhead: `Kraftig ökning i bokningar`, body: `"Vi har fått fler bokningar än någonsin de senaste två dagarna!"` },
+  { id: 'item_K2nM5p', image: `${CDN}/images/roas.png`, heading: `Otrolig ROAS`, subhead: `Spenderade bara 60 kr`, body: `Varje lead gav 750–2500 kr i resultat av bara 60 kr i annonskostnad.` },
+  { id: 'item_L5oN8q', image: `${CDN}/images/resultat1.3m7d.png`, heading: `Exceptionell Tillväxt`, subhead: `3,7 miljoner på 7 dagar`, body: `Organisk tillväxt som genererade 3,7 miljoner visningar på bara 7 dagar – visar kraften i autentiskt UGC-innehåll.` },
+  { id: 'item_M8pO1r', image: `${CDN}/images/resultat1.5m28d.png`, heading: `Kraftig Månadsprestation`, subhead: `1,5 miljoner på 28 dagar`, body: `Konsekvent tillväxt med 1,5 miljoner visningar under en månad – bevisar långsiktig engagemang.` },
+  { id: 'item_N1qP4s', image: `${CDN}/images/resultat1.428d.png`, heading: `Månadskampanj Success`, subhead: `1,4 miljoner på 28 dagar`, body: `Stabil kampanjprestation med över 1,4 miljoner visningar under kampanjperioden.` },
+  { id: 'item_O4pQ7s', image: `${CDN}/images/resultat2m.png`, heading: `Viral Räckvidd`, subhead: `2 miljoner visningar`, body: `Content som nådde 2 miljoner personer – maximal viral spridning och varumärkesexponering.` },
+  { id: 'item_P7qR0t', image: `${CDN}/images/resultat3,7roas.png`, heading: `Stark ROAS`, subhead: `3,7X avkastning`, body: `Paid advertising-kampanj som levererade 3,7X ROAS – varje krona genererade 3,70 kr tillbaka.` },
+  { id: 'item_Q0rS3u', image: `${CDN}/images/resultat13xroas.png`, heading: `Otrolig Avkastning`, subhead: `13X ROAS`, body: `Exceptionell kampanjprestation – varje investerad krona gav 13 kronor tillbaka i försäljning.` },
+  { id: 'item_R3sT6v', image: `${CDN}/images/resultat2.1m28d.png`, heading: `Månadstillväxt`, subhead: `2,1 miljoner på 28 dagar`, body: `Imponerande månatlig tillväxt med 2,1 miljoner visningar – konsekvent högt engagemang.` },
+  { id: 'item_S6tU9w', image: `${CDN}/images/resultat35xroas.png`, heading: `Rekord ROAS`, subhead: `35X avkastning`, body: `Bästa ROAS någonsin – varje krona i annonsering genererade 35 kronor i försäljning. Bevisar kraften i rätt UGC-content.` },
+  { id: 'item_T9uV2x', image: `${CDN}/images/resultat100kutanspend.png`, heading: `Organisk Kraft`, subhead: `100K utan ad spend`, body: `Genererade 100 000 kronor i försäljning helt organiskt, utan en krona i annonseringskostnader.` },
+  { id: 'item_U2vW5y', image: `${CDN}/images/resultat807k7d.png`, heading: `Viral Vecka`, subhead: `807K på 7 dagar`, body: `Snabb viral tillväxt med över 807 000 visningar på en vecka – maximal reach och engagemang.` },
+  { id: 'portfolio_R4sY9d', image: `${CDN}/images/6dagar.jpg`, heading: `7 dagars övertagande`, subhead: `TikTok`, body: `Skräddarsytt TikTok-innehåll för att öka kundens följare och engagemang på plattformen.` },
+  { id: 'portfolio_S7tZ2e', image: `${CDN}/images/606.PNG`, heading: `700% tillväxt på en vecka`, subhead: `TikTok`, body: `Skräddarsytt TikTok-innehåll för att öka kundens följare och engagemang på plattformen.` },
+  { id: 'portfolio_T0uA5f', image: `${CDN}/images/2,1.jpg`, heading: `2.1 Miljoner 28 Dagar`, subhead: `TikTok`, body: `Jag skapade deras sociala medier från scratch och på 28 dagar så gjorde jag dom till ett välkänt namn i Sverige med höga konverteringar.` },
+  { id: 'portfolio_U3vB8g', image: `${CDN}/images/1m.jpg`, heading: `1 Miljon visningar på 4 veckor!`, subhead: `TikTok`, body: `Skräddarsytt TikTok-innehåll för att öka kundens följare och engagemang på plattformen.` },
+  { id: 'portfolio_V6wC1h', image: `${CDN}/images/523.JPG`, heading: `Märkbart övertagande`, subhead: `TikTok`, body: `Skräddarsytt TikTok-innehåll för att öka kundens följare och engagemang på plattformen.` },
 ];
 
 export type Testimonial = {

@@ -3,14 +3,33 @@ import { Section, Container, VStack, HStack, Card, Body } from '@/lib/ui';
 import { SectionHeader } from '@/components/SectionHeader';
 import { BookCalendlyButton } from '@/components/BookCalendlyButton';
 import { ContactForm } from '@/components/ContactForm';
+import { t, isLang, type Lang } from '@/i18n';
 
-export const metadata: Metadata = {
-  title: 'Kontakta Oss',
-  description:
-    'Redo att skala ditt varumärke? Boka ett gratis strategimöte eller skicka ett meddelande. Vi svarar inom 24 timmar.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang: raw } = await params;
+  const lang: Lang = isLang(raw) ? raw : 'sv';
+  return {
+    title: t('Kontakta Oss', lang),
+    description: t(
+      'Redo att skala ditt varumärke? Boka ett gratis strategimöte eller skicka ett meddelande. Vi svarar inom 24 timmar.',
+      lang,
+    ),
+  };
+}
 
-export default function KontaktPage() {
+export default async function KontaktPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang: raw } = await params;
+  const lang: Lang = isLang(raw) ? raw : 'sv';
+  const tr = (s: string) => t(s, lang);
+
   return (
     <>
       <Section spacing="2xl">
@@ -18,10 +37,10 @@ export default function KontaktPage() {
           <VStack spacing="2xl" align="center">
             <SectionHeader
               isHero
-              heading="Låt oss skala ditt varumärke"
-              body="Boka ett gratis strategimöte eller skicka ett meddelande. Vi svarar inom 24 timmar."
+              heading={tr('Låt oss skala ditt varumärke')}
+              body={tr('Boka ett gratis strategimöte eller skicka ett meddelande. Vi svarar inom 24 timmar.')}
             />
-            <BookCalendlyButton label="Boka ett möte" size="lg" variant="accent" />
+            <BookCalendlyButton label={tr('Boka ett möte')} size="lg" variant="accent" />
           </VStack>
         </Container>
       </Section>
@@ -30,10 +49,11 @@ export default function KontaktPage() {
         <Container width="form">
           <VStack spacing="2xl" align="stretch">
             <SectionHeader
-              heading="Skicka ett meddelande"
-              body="Berätta kort om ditt företag och dina mål, så hör vi av oss inom 24 timmar."
+              heading={tr('Skicka ett meddelande')}
+              body={tr('Berätta kort om ditt företag och dina mål, så hör vi av oss inom 24 timmar.')}
             />
             <ContactForm
+              lang={lang}
               pixelEvent={{
                 event: 'Lead',
                 parameters: {
@@ -51,7 +71,7 @@ export default function KontaktPage() {
           <Card padding="lg" radius="md" variant="outlined">
             <VStack spacing="md" align="center">
               <Body size="md" color="secondary" align="center">
-                Föredrar du e-post?
+                {tr('Föredrar du e-post?')}
               </Body>
               <HStack spacing="md" justify="center" wrap>
                 <Body size="lg" weight="semibold">info@kjmarketingsweden.com</Body>

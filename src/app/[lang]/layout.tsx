@@ -1,41 +1,63 @@
-import './globals.css';
+import '../globals.css';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { notFound } from 'next/navigation';
 import { ThemeSync } from '@blimpify-im/ui/design';
+import { CookieConsent, ConsentProvider } from '@/lib/ui';
 import { loadDesign } from '@/lib/design';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { LANGS, isLang, t, type Lang } from '@/i18n';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kjmarketingsweden.com',
-  ),
-  title: {
-    default: 'KJ Marketing Sweden',
-    template: '%s | KJ Marketing Sweden',
-  },
-  description:
-    'UGC-byrå för video, sociala medier och annonsering. 50+ handplockade kreatörer och bevisad ROI.',
-};
+export function generateStaticParams() {
+  return LANGS.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang: raw } = await params;
+  const lang: Lang = isLang(raw) ? raw : 'sv';
+  return {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kjmarketingsweden.com',
+    ),
+    title: {
+      default: 'KJ Marketing Sweden',
+      template: '%s | KJ Marketing Sweden',
+    },
+    description: t(
+      'UGC-byrå för video, sociala medier och annonsering. 50+ handplockade kreatörer och bevisad ROI.',
+      lang,
+    ),
+  };
+}
 
 const attr = (v: unknown): string | undefined =>
   v === undefined || v === null ? undefined : String(v);
 
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang: raw } = await params;
+  if (!isLang(raw)) notFound();
+  const lang: Lang = raw;
   const { snippet, tokens } = await loadDesign();
 
   return (
     <html
-      lang="sv"
+      lang={lang}
       suppressHydrationWarning
       className="theme-pending"
       data-theme={snippet.themeMode === 'dark' ? 'dark' : 'light'}
@@ -65,9 +87,12 @@ export default async function RootLayout({
       </head>
       <body>
         <ThemeSync />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ConsentProvider>
+          <Navbar lang={lang} />
+          <main>{children}</main>
+          <Footer lang={lang} />
+          <CookieConsent locale={lang} position="bottom-left" />
+        </ConsentProvider>
       </body>
     </html>
   );

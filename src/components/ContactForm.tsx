@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { VStack, Grid, GridItem, Input, Textarea, Button, Body } from '@/lib/ui';
+import { t, type Lang } from '@/i18n';
 
 type FbqFn = (event: string, name: string, params?: Record<string, unknown>) => void;
 
 type ContactFormProps = {
+  lang?: Lang;
   submitLabel?: string;
   pixelEvent?: {
     event: string;
@@ -14,9 +16,11 @@ type ContactFormProps = {
 };
 
 export function ContactForm({
-  submitLabel = 'Skicka',
+  lang = 'sv',
+  submitLabel,
   pixelEvent,
 }: ContactFormProps) {
+  const tr = (s: string) => t(s, lang);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -49,8 +53,8 @@ export function ContactForm({
             <Input
               type="text"
               name="name"
-              label="Namn"
-              placeholder="Förnamn"
+              label={tr('Namn')}
+              placeholder={tr('Förnamn')}
               variant="bordered"
               radius="md"
               size="md"
@@ -62,8 +66,8 @@ export function ContactForm({
             <Input
               type="text"
               name="business"
-              label="Företag"
-              placeholder="Företagsnamn"
+              label={tr('Företag')}
+              placeholder={tr('Företagsnamn')}
               variant="bordered"
               radius="md"
               size="md"
@@ -75,7 +79,7 @@ export function ContactForm({
         <Input
           type="email"
           name="email"
-          label="E-post"
+          label={tr('E-post')}
           placeholder="din@email.com"
           variant="bordered"
           radius="md"
@@ -86,8 +90,8 @@ export function ContactForm({
         <Input
           type="tel"
           name="phone"
-          label="Telefon"
-          placeholder="Telefonnummer"
+          label={tr('Telefon')}
+          placeholder={tr('Telefonnummer')}
           variant="bordered"
           radius="md"
           size="md"
@@ -95,8 +99,8 @@ export function ContactForm({
         />
         <Textarea
           name="message"
-          label="Meddelande"
-          placeholder="Vad vill du FÅ ut av detta?"
+          label={tr('Meddelande')}
+          placeholder={tr('Vad vill du FÅ ut av detta?')}
           variant="bordered"
           size="md"
           minRows={4}
@@ -110,16 +114,16 @@ export function ContactForm({
           fullWidth
           loading={status === 'sending'}
         >
-          {status === 'sending' ? 'Skickar…' : submitLabel}
+          {status === 'sending' ? tr('Skickar…') : (submitLabel ?? tr('Skicka'))}
         </Button>
         {status === 'success' ? (
           <Body color="success" role="status">
-            Tack! Vi hör av oss inom 24 timmar.
+            {tr('Tack! Vi hör av oss inom 24 timmar.')}
           </Body>
         ) : null}
         {status === 'error' ? (
           <Body color="error" role="alert">
-            Något gick fel. Försök igen eller maila oss direkt.
+            {tr('Något gick fel. Försök igen eller maila oss direkt.')}
           </Body>
         ) : null}
       </VStack>

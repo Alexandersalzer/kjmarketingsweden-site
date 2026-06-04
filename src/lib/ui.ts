@@ -62,6 +62,18 @@ export {
 export {
   Stars,
   Tag,
+  NumberDisplay,
+} from '@blimpify-im/ui';
+
+// Pattern cards (production-built layouts — never hand-roll lookalikes)
+export {
+  PortfolioCard,
+  ResultsCard,
+} from '@blimpify-im/ui';
+
+// Media
+export {
+  Flag,
 } from '@blimpify-im/ui';
 
 // Animations / motion
@@ -79,3 +91,12 @@ export {
   Bars3Icon,
   XMarkIcon,
 } from '@blimpify-im/ui';
+
+// Shells (navbar/footer chrome) — only exposed via the /shells subpath,
+// not the main barrel. NavbarContainer owns the fixed-overlay positioning,
+// background variants, scroll transitions, and the mobile drawer.
+export { NavbarContainer } from '@blimpify-im/ui/shells';
+
+// GDPR cookie consent — /consent subpath. CookieConsent requires
+// ConsentProvider as an ancestor (it reads consent state via context).
+export { CookieConsent, ConsentProvider } from '@blimpify-im/ui/consent';
