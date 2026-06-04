@@ -5,6 +5,7 @@ import { VStack, Grid, GridItem, Input, Textarea, Button, Body } from '@/lib/ui'
 import { t, type Lang } from '@/i18n';
 
 type FbqFn = (event: string, name: string, params?: Record<string, unknown>) => void;
+type TtqFn = { track: (event: string, params?: Record<string, unknown>) => void };
 
 type ContactFormProps = {
   lang?: Lang;
@@ -36,8 +37,9 @@ export function ContactForm({
       if (!res.ok) throw new Error('Bad response');
       setStatus('success');
       if (pixelEvent && typeof window !== 'undefined') {
-        const fbq = (window as unknown as { fbq?: FbqFn }).fbq;
-        if (fbq) fbq('track', pixelEvent.event, pixelEvent.parameters);
+        const w = window as unknown as { fbq?: FbqFn; ttq?: TtqFn };
+        if (w.fbq) w.fbq('track', pixelEvent.event, pixelEvent.parameters);
+        if (w.ttq) w.ttq.track('SubmitForm', pixelEvent.parameters);
       }
       (e.target as HTMLFormElement).reset();
     } catch {

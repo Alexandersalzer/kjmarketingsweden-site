@@ -50,6 +50,12 @@ export {
   SegmentedControl,
 } from '@blimpify-im/ui';
 
+// Navigation
+export {
+  Tab,
+  TabGroup,
+} from '@blimpify-im/ui';
+
 // Media
 export {
   Logo,
@@ -99,4 +105,5 @@ export { NavbarContainer } from '@blimpify-im/ui/shells';
 
 // GDPR cookie consent — /consent subpath. CookieConsent requires
 // ConsentProvider as an ancestor (it reads consent state via context).
-export { CookieConsent, ConsentProvider } from '@blimpify-im/ui/consent';
+// MarketingPixels loads Meta/TikTok pixels gated by marketing consent.
+export { CookieConsent, ConsentProvider, MarketingPixels } from '@blimpify-im/ui/consent';

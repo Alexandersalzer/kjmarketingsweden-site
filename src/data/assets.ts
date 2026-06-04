@@ -3,6 +3,13 @@ export const CDN = 'https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-
 export const CALENDLY_URL = 'https://calendly.com/kjmarketingsweden/30min';
 export const TRUSTPILOT_BUSINESS_UNIT_ID = '68e60753aa0d394fa08f1073';
 
+// Marketing pixels — same IDs as the production site, loaded consent-gated
+// (only after the visitor accepts marketing cookies) via MarketingPixels.
+export const marketingPixels = [
+  { platform: 'meta' as const, pixel_id: '1782929995577905' },
+  { platform: 'tiktok' as const, pixel_id: 'D1H42ERC77U8D1D8E83G' },
+];
+
 export const brand = {
   logoIcon: `${CDN}/images/logos/tlogo26d.png`,
   logoWordmark: `${CDN}/images/logos/tlogotext26d.png`,

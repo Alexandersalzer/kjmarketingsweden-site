@@ -7,7 +7,8 @@ import {
   Heading,
   Body,
   VideoShowcase,
-  SegmentedControl,
+  Tab,
+  TabGroup,
 } from '@/lib/ui';
 import { PORTFOLIO_FILTERS, portfolioItems } from '@/data/assets';
 import { t, type Lang } from '@/i18n';
@@ -23,12 +24,21 @@ export function PortfolioGallery({ lang }: { lang: Lang }) {
 
   return (
     <VStack spacing="xl" align="stretch">
-      <SegmentedControl
-        value={filter}
-        onChange={setFilter}
-        options={PORTFOLIO_FILTERS.map((c) => ({ value: c, label: t(c, lang) }))}
-        size="md"
-      />
+      <TabGroup variant="subtle" isAccent justify="center">
+        {PORTFOLIO_FILTERS.map((c) => (
+          <Tab
+            key={c}
+            variant="subtle"
+            isAccent
+            size="md"
+            fontWeight="medium"
+            isActive={filter === c}
+            onClick={() => setFilter(c)}
+          >
+            {t(c, lang)}
+          </Tab>
+        ))}
+      </TabGroup>
 
       <Grid columns={{ base: 1, md: 2, lg: 3 }} gap="lg" alignItems="start">
         {visible.map((item) => (

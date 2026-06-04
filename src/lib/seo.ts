@@ -11,6 +11,12 @@ const CDN_FAVICON =
 
 const OG_LOCALE: Record<Lang, string> = { sv: 'sv_SE', en: 'en_US' };
 
+// The production /images/og-*.jpg share images return 403 and aren't in the
+// repo, so og:image/twitter:image use the brand logo on the CDN instead (an
+// accessible asset) — link previews show the brand rather than a blank box.
+export const BRAND_OG_IMAGE =
+  'https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/images/logos/tlogotext26d.png';
+
 // Favicon set + manifest hosted on the CDN — identical to the production site.
 export const siteIcons: Metadata['icons'] = {
   icon: [
@@ -30,7 +36,7 @@ export const siteManifest = `${CDN_FAVICON}/site.webmanifest`;
 export function pageMetadata(route: SeoRoute, lang: Lang, path: string): Metadata {
   const s = seo[route][lang];
   const url = SITE_URL + localePath(lang, path);
-  const ogImages = s.ogImage ? [s.ogImage] : undefined;
+  const ogImages = [BRAND_OG_IMAGE];
   return {
     // Absolute so it's consistent on the home route too (Next's title.template
     // does not apply to a page in the same segment as the layout defining it).
@@ -57,7 +63,7 @@ export function pageMetadata(route: SeoRoute, lang: Lang, path: string): Metadat
       card: 'summary_large_image',
       title: s.twitterTitle ?? s.ogTitle,
       description: s.twitterDescription ?? s.ogDescription,
-      images: s.twitterImage ? [s.twitterImage] : ogImages,
+      images: ogImages,
     },
   };
 }

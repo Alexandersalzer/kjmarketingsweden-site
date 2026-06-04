@@ -40,7 +40,7 @@ export const seo: Record<SeoRoute, Record<Lang, PageSeo>> = {
       "twitterImage": "/images/twitter-home.jpg",
       "structuredData": {
         "@type": "Organization",
-        "logo": "https://KJ.se/images/logo.png",
+        "logo": "https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/images/logos/tlogotext26d.png",
         "description": "Professionell UGC och social media marknadsföring för svenska företag"
       }
     },
@@ -65,7 +65,7 @@ export const seo: Record<SeoRoute, Record<Lang, PageSeo>> = {
       "twitterImage": "/images/twitter-home.jpg",
       "structuredData": {
         "@type": "Organization",
-        "logo": "https://KJ.se/images/logo.png",
+        "logo": "https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/images/logos/tlogotext26d.png",
         "description": "Professional UGC and social media marketing for Swedish companies"
       }
     }
