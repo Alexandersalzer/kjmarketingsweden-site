@@ -35,8 +35,9 @@ export function Footer({ lang }: { lang: Lang }) {
             <Logo
               src={brand.metaPartnerBadge}
               alt="Meta Business Partner"
-              width={140}
-              height={48}
+              width={100}
+              height={34}
+              color='inverse'
             />
           </VStack>
         </GridItem>
