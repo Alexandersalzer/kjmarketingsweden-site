@@ -3,14 +3,12 @@ import {
   Section,
   Container,
   VStack,
-  HStack,
   Grid,
   Card,
   Heading,
   Body,
   Image,
   CountUp,
-  Divider,
 } from '@/lib/ui';
 import { SectionHeader } from '@/components/SectionHeader';
 import { ContactForm } from '@/components/ContactForm';
@@ -60,30 +58,27 @@ export default async function ResultatPage({
               body={tr('Utforska våra bäst presterande kampanjer och se hur vi har hjälpt företag att växa med UGC-videos, social media management och paid advertising.')}
             />
 
-            <HStack spacing="lg" justify="center" wrap>
-              {resultsStats.map((s, i) => {
+            <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap="lg" alignItems="start">
+              {resultsStats.map((s) => {
                 const { num, suffix, decimals } = parseStat(s.value);
                 return (
-                  <HStack key={s.label} spacing="lg" align="center">
-                    <VStack spacing="xs" align="center">
-                      <CountUp
-                        end={num}
-                        suffix={suffix}
-                        decimals={decimals}
-                        duration={2500}
-                        enableScrollTrigger
-                        triggerOffset={100}
-                        variant="display-md"
-                        weight="bold"
-                        align="center"
-                      />
-                      <Body size="sm" color="secondary" align="center">{tr(s.label)}</Body>
-                    </VStack>
-                    {i < resultsStats.length - 1 ? <Divider orientation="vertical" /> : null}
-                  </HStack>
+                  <VStack key={s.label} spacing="xs" align="center">
+                    <CountUp
+                      end={num}
+                      suffix={suffix}
+                      decimals={decimals}
+                      duration={2500}
+                      enableScrollTrigger
+                      triggerOffset={100}
+                      variant="display-md"
+                      weight="bold"
+                      align="center"
+                    />
+                    <Body size="sm" color="secondary" align="center">{tr(s.label)}</Body>
+                  </VStack>
                 );
               })}
-            </HStack>
+            </Grid>
 
             <Grid columns={{ base: 1, md: 2, lg: 3 }} gap="lg" alignItems="start">
               {resultsItems.map((r) => (

@@ -3,10 +3,9 @@ import {
   Section,
   Container,
   VStack,
-  HStack,
+  Grid,
   Body,
   CountUp,
-  Divider,
 } from '@/lib/ui';
 import { SectionHeader } from '@/components/SectionHeader';
 import { ContactForm } from '@/components/ContactForm';
@@ -57,30 +56,27 @@ export default async function PortfolioPage({
               body={tr('Bläddra igenom mina bäst presterande UGC-innehåll och framgångsrika kampanjer som har genererat miljontals visningar och konverteringar.')}
             />
 
-            <HStack spacing="lg" justify="center" wrap>
-              {portfolioStats.map((s, i) => {
+            <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap="lg" alignItems="start">
+              {portfolioStats.map((s) => {
                 const { num, suffix, decimals } = parseStat(s.value);
                 return (
-                  <HStack key={s.label} spacing="lg" align="center">
-                    <VStack spacing="xs" align="center">
-                      <CountUp
-                        end={num}
-                        suffix={suffix}
-                        decimals={decimals}
-                        duration={2500}
-                        enableScrollTrigger
-                        triggerOffset={100}
-                        variant="display-md"
-                        weight="bold"
-                        align="center"
-                      />
-                      <Body size="sm" color="secondary" align="center">{tr(s.label)}</Body>
-                    </VStack>
-                    {i < portfolioStats.length - 1 ? <Divider orientation="vertical" /> : null}
-                  </HStack>
+                  <VStack key={s.label} spacing="xs" align="center">
+                    <CountUp
+                      end={num}
+                      suffix={suffix}
+                      decimals={decimals}
+                      duration={2500}
+                      enableScrollTrigger
+                      triggerOffset={100}
+                      variant="display-md"
+                      weight="bold"
+                      align="center"
+                    />
+                    <Body size="sm" color="secondary" align="center">{tr(s.label)}</Body>
+                  </VStack>
                 );
               })}
-            </HStack>
+            </Grid>
 
             <PortfolioGallery lang={lang} />
           </VStack>

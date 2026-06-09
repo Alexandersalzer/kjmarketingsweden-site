@@ -1,7 +1,8 @@
 'use client';
 
-import type { CSSProperties } from 'react';
+import { useEffect, type CSSProperties } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   Box,
   HStack,
@@ -29,6 +30,17 @@ const fixedNav: CSSProperties = {
 };
 
 export function Navbar({ lang }: { lang: Lang }) {
+  const pathname = usePathname();
+
+  // NavbarContainer keeps the mobile drawer's open state internally and exposes
+  // no close callback. Because this Navbar lives in the layout it never remounts
+  // on client navigation, so tapping a drawer link would leave the drawer open.
+  // The container closes itself on an Escape keydown, so emit one whenever the
+  // route changes to collapse the drawer as the user navigates.
+  useEffect(() => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+  }, [pathname]);
+
   return (
     <Box as="nav" style={fixedNav}>
       <NavbarContainer
