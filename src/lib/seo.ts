@@ -7,7 +7,7 @@ export const SITE_URL =
 export const SITE_NAME = 'KJ MARKETING SWEDEN';
 
 const CDN_FAVICON =
-  'https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/favicon';
+  'https://d2bn17anh9ekeg.cloudfront.net/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/favicon';
 
 const OG_LOCALE: Record<Lang, string> = { sv: 'sv_SE', en: 'en_US' };
 
@@ -15,7 +15,7 @@ const OG_LOCALE: Record<Lang, string> = { sv: 'sv_SE', en: 'en_US' };
 // repo, so og:image/twitter:image use the brand logo on the CDN instead (an
 // accessible asset) — link previews show the brand rather than a blank box.
 export const BRAND_OG_IMAGE =
-  'https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/images/logos/tlogotext26d.png';
+  'https://d2bn17anh9ekeg.cloudfront.net/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15/images/logos/tlogotext26d.png';
 
 // Favicon set + manifest hosted on the CDN — identical to the production site.
 export const siteIcons: Metadata['icons'] = {

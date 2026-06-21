@@ -1,4 +1,4 @@
-export const CDN = 'https://cdn.blimpify-im.com/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15';
+export const CDN = 'https://d2bn17anh9ekeg.cloudfront.net/members/d3c21136-9b1a-43fc-9f88-2cd1a14a7c15';
 
 export const CALENDLY_URL = 'https://calendly.com/kjmarketingsweden/30min';
 export const TRUSTPILOT_BUSINESS_UNIT_ID = '68e60753aa0d394fa08f1073';

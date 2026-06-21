@@ -4,7 +4,7 @@ const nextConfig = {
   transpilePackages: ['@blimpify-im/ui'],
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'cdn.blimpify-im.com' },
+      { protocol: 'https', hostname: 'd2bn17anh9ekeg.cloudfront.net' },
       { protocol: 'https', hostname: 'user-images.trustpilot.com' },
     ],
   },
