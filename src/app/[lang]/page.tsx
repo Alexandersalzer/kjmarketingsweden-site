@@ -276,7 +276,7 @@ function Results({ lang, tr }: S) {
                     }}
                   >
                     <Image
-                      src={cell.image}
+                      src={lang === 'en' && cell.imageEn ? cell.imageEn : cell.image}
                       alt={cell.imageAlt}
                       width="full"
                       height="full"

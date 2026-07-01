@@ -95,6 +95,7 @@ export type ResultsGridCell = {
   heading: string;
   body: string;
   image: string;
+  imageEn?: string;
   imageAlt: string;
   colSpan: number;
   rowSpan: number;
@@ -106,6 +107,7 @@ export const resultsGridCells: ResultsGridCell[] = [
     heading: 'Skalad försäljning med Meta Ads',
     body: '946 800 kr i försäljning på 1,5 månad – 18x ROAS',
     image: `${CDN}/images/kalas.jpeg`,
+    imageEn: `${CDN}/images/kalasenglish.jpeg`,
     imageAlt: 'Takeover resultat',
     colSpan: 2,
     rowSpan: 1,
