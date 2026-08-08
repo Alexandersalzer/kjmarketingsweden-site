@@ -25,7 +25,7 @@ export type LogoItem = { src: string; alt: string; width: number; height: number
 
 export const heroLogos: LogoItem[] = [
   { src: `${CDN}/images/logos/logoHuel.png`,         alt: 'Huel',          width: 170, height: 65 },
-  { src: `${CDN}/images/logos/elgiganten.png`,       alt: 'Elgiganten',    width: 200, height: 60 },
+  { src: `${CDN}/images/logos/estrellalogo.png`,     alt: 'Estrella',      width: 95,  height: 60 },
   { src: `${CDN}/images/logos/wolt.png`,             alt: 'Wolt',          width: 120, height: 60 },
   { src: `${CDN}/images/logos/tradera.png`,          alt: 'Tradera',       width: 200, height: 30 },
   { src: `${CDN}/images/logos/philips.png`,          alt: 'Philips',       width: 120, height: 60 },
