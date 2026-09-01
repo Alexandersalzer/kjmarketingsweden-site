@@ -5,7 +5,8 @@ import { notFound } from 'next/navigation';
 import { ThemeSync } from '@blimpify-im/ui/design';
 import { CookieConsent, ConsentProvider, MarketingPixels } from '@/lib/ui';
 import { loadDesign } from '@/lib/design';
-import { marketingPixels } from '@/data/assets';
+import { marketingPixels, OPENAI_PIXEL_ID } from '@/data/assets';
+import { OpenAIPixel } from '@/components/OpenAIPixel';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { LANGS, isLang, type Lang } from '@/i18n';
@@ -92,6 +93,7 @@ export default async function RootLayout({
           <Footer lang={lang} />
           <CookieConsent locale={lang} position="bottom-left" />
           <MarketingPixels pixels={marketingPixels} />
+          <OpenAIPixel pixelId={OPENAI_PIXEL_ID} />
         </ConsentProvider>
       </body>
     </html>

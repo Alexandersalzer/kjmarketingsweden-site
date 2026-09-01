@@ -62,6 +62,12 @@ const OVERRIDES: Record<string, string> = {
   'Meddelande': 'Message',
   'Vad vill du FÅ ut av detta?': 'What do you want to GET out of this?',
   'Skickar…': 'Sending…',
+  // awards
+  'Årets Award 2026': 'Award of the Year 2026',
+  'Utmärkelse': 'Award',
+  'Tilldelad av Star Business Awards för sund ekonomi, lönsamhet och tydlig riktning framåt.':
+    'Awarded by Star Business Awards for sound finances, profitability and a clear direction forward.',
+  'Verifiera utmärkelsen': 'Verify the award',
   // masonry grid show more/less
   'Visa mer': 'Show more',
   'Visa färre': 'Show less',

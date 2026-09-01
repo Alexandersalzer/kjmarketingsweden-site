@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { VStack, Grid, GridItem, Input, Textarea, Button, Body } from '@/lib/ui';
 import { t, type Lang } from '@/i18n';
+import { trackOpenAI } from './OpenAIPixel';
 
 type FbqFn = (event: string, name: string, params?: Record<string, unknown>) => void;
 type TtqFn = { track: (event: string, params?: Record<string, unknown>) => void };
@@ -40,6 +41,7 @@ export function ContactForm({
         const w = window as unknown as { fbq?: FbqFn; ttq?: TtqFn };
         if (w.fbq) w.fbq('track', pixelEvent.event, pixelEvent.parameters);
         if (w.ttq) w.ttq.track('SubmitForm', pixelEvent.parameters);
+        trackOpenAI('lead_created', { type: 'customer_action' });
       }
       (e.target as HTMLFormElement).reset();
     } catch {

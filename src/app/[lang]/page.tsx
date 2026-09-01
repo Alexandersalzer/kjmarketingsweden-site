@@ -20,11 +20,13 @@ import {
   CarouselAnimation,
   CountUp,
 } from '@/lib/ui';
+import { AwardSeal } from '@/components/AwardSeal';
 import { SectionHeader } from '@/components/SectionHeader';
 import { BookCalendlyButton } from '@/components/BookCalendlyButton';
 import { ContactForm } from '@/components/ContactForm';
 import { TrustpilotWidget } from '@/components/TrustpilotWidget';
 import {
+  award,
   heroVideo,
   heroLogos,
   portfolioCarouselItems,
@@ -66,6 +68,7 @@ export default async function HomePage({
       <Portfolio lang={lang} tr={tr} />
       <Services lang={lang} tr={tr} />
       <Results lang={lang} tr={tr} />
+      <Award lang={lang} tr={tr} />
       <Testimonials lang={lang} tr={tr} />
       <Contact lang={lang} tr={tr} />
     </>
@@ -76,7 +79,7 @@ type S = { lang: Lang; tr: (s: string) => string };
 
 function Hero({ lang, tr }: S) {
   return (
-    <Section spacing="2xl">
+    <Section spacing="lg">
       <Container>
         <VStack spacing="2xl" align="stretch">
           <VStack spacing="lg" align="center">
@@ -127,9 +130,31 @@ function Hero({ lang, tr }: S) {
   );
 }
 
+function Award({ tr }: S) {
+  return (
+    <Section spacing="2xl">
+      <Container>
+        <VStack spacing="md" align="center">
+          <a
+            href={award.verifyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', color: 'inherit', maxWidth: 320, width: '100%' }}
+          >
+            <AwardSeal title={tr('Årets Award 2026')} />
+          </a>
+          <Body size="sm" color="tertiary" align="center">
+            {tr('Tilldelad av Star Business Awards för sund ekonomi, lönsamhet och tydlig riktning framåt.')}
+          </Body>
+        </VStack>
+      </Container>
+    </Section>
+  );
+}
+
 function Portfolio({ lang, tr }: S) {
   return (
-    <Section id="portfolio" spacing="2xl">
+    <Section id="portfolio" spacing="lg">
       <Container>
         <VStack spacing="2xl" align="stretch">
           <VStack spacing="md" align="center">

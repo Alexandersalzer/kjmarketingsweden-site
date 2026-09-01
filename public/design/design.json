@@ -8,7 +8,7 @@
     "layoutMedia": "full",
     "layoutContent": "md",
     "navbarSpacing": "xl",
-    "sectionSpacing": "xs",
+    "sectionSpacing": "sm",
     "containerSpacing": "lg",
     "typographyScale": "md",
     "fontPrimary": "Outfit",

@@ -10,6 +10,18 @@ export const marketingPixels = [
   { platform: 'tiktok' as const, pixel_id: 'D1H42ERC77U8D1D8E83G' },
 ];
 
+// OpenAI pixel — not a platform @blimpify-im/ui's MarketingPixels supports, so it
+// is loaded by src/components/OpenAIPixel.tsx behind the same marketing consent.
+export const OPENAI_PIXEL_ID = 'FLmGA93JukbR2mAukV8J5R';
+
+export const award = {
+  // Transparent SVG seal (gold star + company name); no baked-in background,
+  // so it sits directly on the page surface in both light and dark mode.
+  badge: 'https://cdn.truecrt.com/cdn/svg/_6a954cb54d7f9-u0slxdgb-py37.svg',
+  verifyUrl:
+    'https://true.starbusinessawards.se/award-sba-2026-kj-marketing-sweden-ab-5285/?zone=truecrt&modal=1&lang=se',
+};
+
 export const brand = {
   logoIcon: `${CDN}/images/logos/tlogo26d.png`,
   logoWordmark: `${CDN}/images/logos/tlogotext26d.png`,
