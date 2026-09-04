@@ -17,6 +17,7 @@ import {
   CarouselAnimation,
   CountUp,
   ResultFigure,
+  type ResponsiveRatio,
 } from '@/lib/ui';
 import { SectionHeader } from '@/components/SectionHeader';
 import { BookCalendlyButton } from '@/components/BookCalendlyButton';
@@ -255,7 +256,7 @@ function Results({ lang, tr }: S) {
   const figure = (
     cell: (typeof resultsGridCells)[number],
     sizing: {
-      ratio?: '16/9' | '16/8' | '4/3' | '3/1';
+      ratio?: ResponsiveRatio;
       fill?: boolean;
       imageObjectPosition?: string;
     },
@@ -280,13 +281,13 @@ function Results({ lang, tr }: S) {
 
           <Grid columns={{ base: 1, md: 3 }} gap="lg" alignItems="stretch">
             <GridItem colSpan={{ base: 1, md: 2 }} height="full">
-              {figure(hero, { ratio: '16/9', imageObjectPosition: 'center center' })}
-            </GridItem>
-            <GridItem rowSpan={2} height="full">
-              {figure(tiktok, { fill: true })}
+              {figure(hero, { ratio: { base: '16/10', md: '16/9' }, imageObjectPosition: 'center center' })}
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 2 }} height="full">
-              {figure(meta, { ratio: '3/1' })}
+              {figure(meta, { ratio: { base: '16/10', md: '3/1' } })}
+            </GridItem>
+            <GridItem height="full" className="result-figure-aside">
+              {figure(tiktok, { fill: true, ratio: { base: '16/10' } })}
             </GridItem>
           </Grid>
 

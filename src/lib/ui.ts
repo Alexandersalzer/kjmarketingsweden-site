@@ -82,6 +82,7 @@ export {
   ResultsCard,
   ResultFigure,
 } from '@blimpify-im/ui';
+export type { ResponsiveRatio } from '@blimpify-im/ui';
 
 // Media
 export {
