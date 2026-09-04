@@ -49,6 +49,20 @@
 - No JSON config files
 - No content loaders
 
+## Design system dependency
+- `@blimpify-im/ui` must always be a published version from GitHub Packages.
+  NEVER commit a `file:` dependency — the path resolves only on a dev machine
+  and Vercel fails every import with "Module not found".
+- Publish the design system via `git push` (or CI), never a manual
+  `npm publish` from a local copy. If publishing manually is unavoidable, run
+  `git fetch && git status` in `../alsa-design-system` FIRST — its version
+  field has not been committed since 3.2.1317, so a stale checkout silently
+  ships old code as a new version and the site loses changes with a green build.
+- After repointing the dependency, verify with a clean install in an empty
+  directory (`npm ci` with only package.json/package-lock.json/.npmrc). Simply
+  reverting the lockfile is not enough: it keeps `"link": true` pointing at the
+  local path, which produces a broken symlink.
+
 ## Do not touch
 - src/app/globals.css
 - .npmrc
