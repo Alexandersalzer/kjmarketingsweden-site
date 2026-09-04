@@ -87,9 +87,9 @@ export default async function ResultatPage({
                     <Image
                       src={r.image}
                       alt={r.heading}
-                      aspectRatio="2/3"
+                      aspectRatio="10/16"
                       radius="md"
-                      objectFit="cover"
+                      objectFit="contain"
                       width="full"
                     />
                   </Card>

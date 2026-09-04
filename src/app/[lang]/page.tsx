@@ -84,7 +84,12 @@ function Hero({ lang, tr }: S) {
               heading={tr('Performance byrå för tillväxt och försäljning')}
               body={tr('Vi driver mätbar tillväxt genom Meta Ads och paid social – med ett team av 50+ handplockade kreatörer som producerar annonsmaterialet som faktiskt konverterar.')}
             />
-            <BookCalendlyButton label={tr('Boka ett möte')} size="lg" variant="accent" />
+            <HStack spacing="md" align="center" justify="center" wrap>
+              <BookCalendlyButton label={tr('Boka ett möte')} size="lg" variant="accent" />
+              <Link href={localePath(lang, '/kontakt')} style={{ textDecoration: 'none' }}>
+                <Button variant="secondary" size="lg">{tr('Kontakta oss')}</Button>
+              </Link>
+            </HStack>
           </VStack>
 
           <VStack spacing="sm" align="center">
