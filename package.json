@@ -12,7 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@blimpify-im/ui": "^3.2.1357",
+    "@blimpify-im/ui": "file:../alsa-design-system",
     "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

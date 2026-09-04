@@ -6,7 +6,6 @@ import {
   HStack,
   Grid,
   GridItem,
-  MasonryGrid,
   Box,
   Card,
   Heading,
@@ -14,19 +13,17 @@ import {
   Button,
   Image,
   Logo,
-  Avatar,
-  Stars,
   VideoShowcase,
   CarouselAnimation,
   CountUp,
+  ResultFigure,
 } from '@/lib/ui';
-import { AwardSeal } from '@/components/AwardSeal';
 import { SectionHeader } from '@/components/SectionHeader';
 import { BookCalendlyButton } from '@/components/BookCalendlyButton';
 import { ContactForm } from '@/components/ContactForm';
 import { TrustpilotWidget } from '@/components/TrustpilotWidget';
+import { ReviewColumns } from '@/components/ReviewColumns';
 import {
-  award,
   heroVideo,
   heroLogos,
   portfolioCarouselItems,
@@ -68,7 +65,6 @@ export default async function HomePage({
       <Portfolio lang={lang} tr={tr} />
       <Services lang={lang} tr={tr} />
       <Results lang={lang} tr={tr} />
-      <Award lang={lang} tr={tr} />
       <Testimonials lang={lang} tr={tr} />
       <Contact lang={lang} tr={tr} />
     </>
@@ -79,9 +75,9 @@ type S = { lang: Lang; tr: (s: string) => string };
 
 function Hero({ lang, tr }: S) {
   return (
-    <Section spacing="lg">
+    <Section spacing="sm" applyNavbarVoid>
       <Container>
-        <VStack spacing="2xl" align="stretch">
+        <VStack spacing="lg" align="stretch">
           <VStack spacing="lg" align="center">
             <SectionHeader
               isHero
@@ -117,36 +113,16 @@ function Hero({ lang, tr }: S) {
               />
             </Box>
           </VStack>
-
-          <VideoShowcase
-            src={heroVideo.src}
-            poster={heroVideo.poster}
-            aspectRatio="16-9"
-            radius="md"
-          />
         </VStack>
       </Container>
-    </Section>
-  );
-}
 
-function Award({ tr }: S) {
-  return (
-    <Section spacing="2xl">
-      <Container>
-        <VStack spacing="md" align="center">
-          <a
-            href={award.verifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none', color: 'inherit', maxWidth: 320, width: '100%' }}
-          >
-            <AwardSeal title={tr('Årets Award 2026')} />
-          </a>
-          <Body size="sm" color="tertiary" align="center">
-            {tr('Tilldelad av Star Business Awards för sund ekonomi, lönsamhet och tydlig riktning framåt.')}
-          </Body>
-        </VStack>
+      <Container width="media">
+        <VideoShowcase
+          src={heroVideo.src}
+          poster={heroVideo.poster}
+          aspectRatio="16-9"
+          radius="md"
+        />
       </Container>
     </Section>
   );
@@ -154,9 +130,9 @@ function Award({ tr }: S) {
 
 function Portfolio({ lang, tr }: S) {
   return (
-    <Section id="portfolio" spacing="lg">
-      <Container>
-        <VStack spacing="2xl" align="stretch">
+    <Section id="portfolio" spacing="sm">
+      <Container width="media">
+        <VStack spacing="lg" align="stretch">
           <VStack spacing="md" align="center">
             <CountUp
               end={100000000}
@@ -213,9 +189,9 @@ function Portfolio({ lang, tr }: S) {
 
 function Services({ lang, tr }: S) {
   return (
-    <Section spacing="2xl">
+    <Section spacing="sm">
       <Container>
-        <VStack spacing="2xl" align="stretch">
+        <VStack spacing="lg" align="stretch">
           <SectionHeader
             heading={tr('Våra Tjänster')}
             body={tr('Från autentiska UGC-videos till strategisk social media-hantering – vi hjälper e-handel och varumärken att växa med content som konverterar.')}
@@ -269,57 +245,49 @@ function Services({ lang, tr }: S) {
 }
 
 function Results({ lang, tr }: S) {
+  const [hero, tiktok, meta] = resultsGridCells;
+
+  const figure = (
+    cell: (typeof resultsGridCells)[number],
+    sizing: {
+      ratio?: '16/9' | '16/8' | '4/3' | '3/1';
+      fill?: boolean;
+      imageObjectPosition?: string;
+    },
+  ) => (
+    <ResultFigure
+      heading={tr(cell.heading)}
+      metric={tr(cell.body)}
+      imageSrc={lang === 'en' && cell.imageEn ? cell.imageEn : cell.image}
+      imageAlt={cell.imageAlt}
+      {...sizing}
+    />
+  );
+
   return (
-    <Section spacing="2xl">
+    <Section spacing="sm">
       <Container>
-        <VStack spacing="2xl" align="stretch">
+        <VStack spacing="lg" align="stretch">
           <SectionHeader
             heading={tr('Bevisad tillväxt med Meta ads, creators och strategi')}
             body={tr('Tack vare vårt starka kreativa team av ledande experter.')}
           />
 
-          <Grid
-            columns={{ base: 1, md: 3 }}
-            gap="lg"
-            alignItems="stretch"
-            style={{ gridTemplateRows: '450px 450px', gridAutoRows: '450px' }}
-          >
-            {resultsGridCells.map((cell, i) => (
-              <GridItem
-                key={i}
-                colSpan={cell.colSpan}
-                rowSpan={cell.rowSpan}
-                style={{ minHeight: 0 }}
-              >
-                <VStack spacing="sm" style={{ height: '100%' }}>
-                  <Box
-                    grow
-                    style={{
-                      minHeight: 0,
-                      overflow: 'hidden',
-                      borderRadius: 'var(--radius-md)',
-                    }}
-                  >
-                    <Image
-                      src={lang === 'en' && cell.imageEn ? cell.imageEn : cell.image}
-                      alt={cell.imageAlt}
-                      width="full"
-                      height="full"
-                      radius="md"
-                      objectFit="cover"
-                      objectPosition={cell.objectPosition}
-                    />
-                  </Box>
-                  <Heading level={4} weight="bold">{tr(cell.heading)}</Heading>
-                  <Body size="sm" color="secondary">{tr(cell.body)}</Body>
-                </VStack>
-              </GridItem>
-            ))}
+          <Grid columns={{ base: 1, md: 3 }} gap="lg" alignItems="stretch">
+            <GridItem colSpan={{ base: 1, md: 2 }} height="full">
+              {figure(hero, { ratio: '16/9', imageObjectPosition: 'center center' })}
+            </GridItem>
+            <GridItem rowSpan={2} height="full">
+              {figure(tiktok, { fill: true })}
+            </GridItem>
+            <GridItem colSpan={{ base: 1, md: 2 }} height="full">
+              {figure(meta, { ratio: '3/1' })}
+            </GridItem>
           </Grid>
 
           <HStack justify="center">
             <Link href={localePath(lang, '/resultat')} style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="lg">{tr('Visa Mer Resultat')}</Button>
+              <Button variant="primary" size="lg">{tr('Visa mer resultat')}</Button>
             </Link>
           </HStack>
         </VStack>
@@ -330,47 +298,16 @@ function Results({ lang, tr }: S) {
 
 function Testimonials({ lang, tr }: S) {
   return (
-    <Section spacing="2xl">
+    <Section spacing="sm">
       <Container>
-        <VStack spacing="2xl" align="stretch">
+        <VStack spacing="lg" align="stretch">
           <SectionHeader
             tag={tr('Recensioner')}
-            heading={tr('Betrodd av Ledande Varumärken')}
-            body={tr('Sedan 2018 har våra kreatörer byggt förtroende hos miljontals tittare. Vårt nätverk av handplockade UGC-kreatörer ger ditt varumärke autenticitet och trovärdighet som driver konverteringar.')}
+            heading={tr('Betrodd av Ledande Varum\u00e4rken')}
+            body={tr('Sedan 2018 har v\u00e5ra kreat\u00f6rer byggt f\u00f6rtroende hos miljontals tittare. V\u00e5rt n\u00e4tverk av handplockade UGC-kreat\u00f6rer ger ditt varum\u00e4rke autenticitet och trov\u00e4rdighet som driver konverteringar.')}
           />
 
-          <MasonryGrid
-            columns={{ base: 1, md: 2, lg: 3 }}
-            gap="lg"
-            maxItemsMobile={6}
-            maxItemsTablet={9}
-            showMoreLabel={tr('Visa mer')}
-            showLessLabel={tr('Visa färre')}
-          >
-            {testimonials.map((review) => (
-              <a
-                key={review.id}
-                href={review.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <Card variant="outlined" padding="md" radius="md" className="card--clickable">
-                  <VStack spacing="md" align="start">
-                    <HStack spacing="md" align="center">
-                      <Avatar name={review.author} src={review.avatarSrc} size="md" shape="full" />
-                      <VStack spacing="xs" align="start">
-                        <Body size="md" weight="semibold">{review.author}</Body>
-                        <Body size="sm" color="tertiary">Trustpilot</Body>
-                        <Stars rating={review.rating} size="sm" />
-                      </VStack>
-                    </HStack>
-                    <Body size="md">{review.review}</Body>
-                  </VStack>
-                </Card>
-              </a>
-            ))}
-          </MasonryGrid>
+          <ReviewColumns reviews={testimonials} />
 
           <TrustpilotWidget
             businessUnitId={TRUSTPILOT_BUSINESS_UNIT_ID}
@@ -384,9 +321,9 @@ function Testimonials({ lang, tr }: S) {
 
 function Contact({ lang, tr }: S) {
   return (
-    <Section id="contact" spacing="2xl">
+    <Section id="contact" spacing="sm">
       <Container width="form">
-        <VStack spacing="2xl" align="stretch">
+        <VStack spacing="lg" align="stretch">
           <SectionHeader
             heading={tr('Redo att Skala Ditt Varumärke?')}
             body={tr('Vi hjälper dig växa genom hela annonsresan - från strategi och brief, till att skapa innehållet, till att köra och optimera dina annonser. Du fokuserar på ditt varumärke. Vi fixar resten.')}

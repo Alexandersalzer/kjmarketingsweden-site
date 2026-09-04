@@ -14,7 +14,8 @@ import {
 } from '@/lib/ui';
 import { BookCalendlyButton } from './BookCalendlyButton';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { brand } from '@/data/assets';
+import { AwardSeal } from './AwardSeal';
+import { award, brand } from '@/data/assets';
 import { t, localePath, type Lang } from '@/i18n';
 
 export function Footer({ lang }: { lang: Lang }) {
@@ -30,15 +31,25 @@ export function Footer({ lang }: { lang: Lang }) {
               <Logo src={brand.logoWordmark} alt="KJ Marketing Sweden" width={100} />
             </HStack>
             <Body size="sm" color="tertiary">
-              {t('UGC-byrå för video, sociala medier och annonsering', lang)}
+              {t('Perfomance byrå med fokus på annonsering, UGC och content.', lang)}
             </Body>
-            <Logo
-              src={brand.metaPartnerBadge}
-              alt="Meta Business Partner"
-              width={100}
-              height={34}
-              color='inverse'
-            />
+            <HStack align="center" spacing="xl" wrap>
+              <Logo
+                src={brand.metaPartnerBadge}
+                alt="Meta Business Partner"
+                width={100}
+                height={34}
+                color='inverse'
+              />
+              <a
+                href={award.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', color: 'inherit', maxWidth: 160 }}
+              >
+                <AwardSeal title={t('Årets Award 2026', lang)} />
+              </a>
+            </HStack>
           </VStack>
         </GridItem>
 

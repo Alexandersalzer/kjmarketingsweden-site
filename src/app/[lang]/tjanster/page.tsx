@@ -45,10 +45,10 @@ export default async function TjansterPage({
 
   return (
     <>
-      <Section spacing="2xl">
+      <Section spacing="md" applyNavbarVoid>
         <Container>
-          <VStack spacing="2xl" align="stretch">
-            <VStack spacing="2xl" align="center">
+          <VStack spacing="lg" align="stretch">
+            <VStack spacing="lg" align="center">
               <SectionHeader
                 isHero
                 heading={tr('UGC-byrå för video, sociala medier och annonsering')}
@@ -75,9 +75,9 @@ export default async function TjansterPage({
         </Container>
       </Section>
 
-      <Section spacing="2xl">
+      <Section spacing="md">
         <Container>
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="lg" align="stretch">
             <SectionHeader
               heading={tr('Vår Process – Från Första Kontakt Till Resultat')}
               body={tr('Vi tar ansvar för hela kedjan. Från strategisk planering och produktion till aktivering och optimering – varje steg är designat för att maximera ditt resultat.')}
@@ -88,7 +88,7 @@ export default async function TjansterPage({
         </Container>
       </Section>
 
-      <Section spacing="2xl" background='raised'>
+      <Section spacing="md" background='raised'>
         <Container>
           <VStack spacing="lg" align="center">
             <SectionHeader
@@ -105,9 +105,9 @@ export default async function TjansterPage({
         </Container>
       </Section>
 
-      <Section id="contact" spacing="2xl">
+      <Section id="contact" spacing="md">
         <Container width="form">
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="lg" align="stretch">
             <SectionHeader
               heading={tr('Redo att Skala Ditt Varumärke?')}
               body={tr('Vi hjälper dig växa genom hela annonsresan - från strategi och brief, till att skapa innehållet, till att köra och optimera dina annonser.')}

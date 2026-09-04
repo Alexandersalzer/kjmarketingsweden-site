@@ -31,9 +31,9 @@ export default async function KontaktPage({
   return (
     <>
       {structuredData ? <JsonLd data={structuredData} /> : null}
-      <Section spacing="2xl">
+      <Section spacing="md" applyNavbarVoid>
         <Container>
-          <VStack spacing="2xl" align="center">
+          <VStack spacing="lg" align="center">
             <SectionHeader
               isHero
               heading={tr('Låt oss skala ditt varumärke')}
@@ -44,9 +44,9 @@ export default async function KontaktPage({
         </Container>
       </Section>
 
-      <Section id="contact" spacing="2xl">
+      <Section id="contact" spacing="md">
         <Container width="form">
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="lg" align="stretch">
             <SectionHeader
               heading={tr('Skicka ett meddelande')}
               body={tr('Berätta kort om ditt företag och dina mål, så hör vi av oss inom 24 timmar.')}
@@ -65,7 +65,7 @@ export default async function KontaktPage({
         </Container>
       </Section>
 
-      <Section spacing="2xl">
+      <Section spacing="md">
         <Container>
           <Card padding="lg" radius="md" variant="outlined">
             <VStack spacing="md" align="center">

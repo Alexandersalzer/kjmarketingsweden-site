@@ -47,9 +47,9 @@ export default async function PortfolioPage({
   return (
     <>
       {structuredData ? <JsonLd data={structuredData} /> : null}
-      <Section spacing="2xl">
+      <Section spacing="md" applyNavbarVoid>
         <Container>
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="lg" align="stretch">
             <SectionHeader
               isHero
               heading={tr('Videoportfolio')}
@@ -83,9 +83,9 @@ export default async function PortfolioPage({
         </Container>
       </Section>
 
-      <Section id="contact" spacing="2xl">
+      <Section id="contact" spacing="md">
         <Container width="form">
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="lg" align="stretch">
             <SectionHeader
               heading={tr('Redo att Skala Ditt Varumärke?')}
               body={tr('Vi hjälper dig växa genom hela annonsresan - från strategi och brief, till att skapa innehållet, till att köra och optimera dina annonser.')}

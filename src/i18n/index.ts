@@ -15,8 +15,12 @@ export function isLang(v: string | undefined): v is Lang {
  * These take precedence over the auto-generated map.
  */
 const OVERRIDES: Record<string, string> = {
+  // footer
+  'Perfomance byrå med fokus på annonsering, UGC och content.':
+    'Performance agency focused on advertising, UGC and content.',
   // nav / buttons
   'Resultat': 'Results',
+  'Visa mer resultat': 'Show more results',
   'Kontakta oss': 'Contact us',
   'Skicka meddelande': 'Send message',
   'Kontakta Oss': 'Contact Us',

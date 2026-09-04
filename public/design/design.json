@@ -2,10 +2,11 @@
   "globalStyles": {
     "themeMode": "system",
     "radius": "full",
+    "borderWidth": "thin",
     "formWidth": "md",
     "themeTone": "mono",
     "accentColor": "inverse",
-    "layoutMedia": "full",
+    "layoutMedia": "xl",
     "layoutContent": "md",
     "navbarSpacing": "xl",
     "sectionSpacing": "sm",

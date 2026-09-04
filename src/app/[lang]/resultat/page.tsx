@@ -49,9 +49,9 @@ export default async function ResultatPage({
   return (
     <>
       {structuredData ? <JsonLd data={structuredData} /> : null}
-      <Section spacing="2xl">
+      <Section spacing="md" applyNavbarVoid>
         <Container>
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="xl" align="stretch">
             <SectionHeader
               isHero
               heading={tr('Våra Resultat')}
@@ -105,9 +105,9 @@ export default async function ResultatPage({
         </Container>
       </Section>
 
-      <Section id="contact" spacing="2xl">
+      <Section id="contact" spacing="md">
         <Container width="form">
-          <VStack spacing="2xl" align="stretch">
+          <VStack spacing="xl" align="stretch">
             <SectionHeader
               heading={tr('Redo att Uppnå Liknande Resultat?')}
               body={tr('Boka ett gratis strategimöte och upptäck hur våra UGC-kreatörer och social media-expertis kan hjälpa ditt varumärke uppnå liknande tillväxt.')}

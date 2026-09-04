@@ -64,6 +64,11 @@ export {
   VideoShowcase,
 } from '@blimpify-im/ui';
 
+// Overlays
+export {
+  Modal,
+} from '@blimpify-im/ui';
+
 // Data display
 export {
   Stars,
@@ -75,6 +80,7 @@ export {
 export {
   PortfolioCard,
   ResultsCard,
+  ResultFigure,
 } from '@blimpify-im/ui';
 
 // Media
@@ -86,6 +92,7 @@ export {
 export {
   CountUp,
   CarouselAnimation,
+  VerticalCarouselAnimation,
   FadeIn,
 } from '@blimpify-im/ui';
 
